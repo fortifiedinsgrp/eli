@@ -1,0 +1,16 @@
+[
+  {
+    "ticker": "ROIV",
+    "side": "LONG",
+    "entry_price": 24.75,
+    "exit_price": 25.12,
+    "shares": 223,
+    "entry_time": "2026-02-06 11:04:31",
+    "exit_time": "2026-02-06 11:51:07",
+    "pnl": 82.51,
+    "pnl_pct": 1.49,
+    "exit_reason": "TARGET_HIT",
+    "signal": "GAPPER",
+    "hold_time": "0:46:36.259359"
+  }
+]

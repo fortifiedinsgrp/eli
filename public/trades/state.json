@@ -1,8 +1,8 @@
 {
   "date": "2026-02-06",
-  "capital": 25000,
+  "capital": 25082.51,
   "starting_capital": 25000,
-  "cash": 7534.1500000000015,
+  "cash": 8827.310000000001,
   "positions": [
     {
       "ticker": "STLA",
@@ -10,7 +10,7 @@
       "entry_price": 7.43,
       "stop_price": 7.21,
       "target_price": 7.88,
-      "current_price": 7.4399,
+      "current_price": 7.275,
       "cost_basis": 8247.3,
       "entry_time": "2026-02-06 11:04:31",
       "signal": "REVERSAL",
@@ -18,25 +18,8 @@
       "rel_volume": 2.5,
       "highest_since_entry": 7.4399,
       "trailing_active": false,
-      "unrealized_pnl": 10.99,
-      "unrealized_pct": 0.13
-    },
-    {
-      "ticker": "ROIV",
-      "shares": 223,
-      "entry_price": 24.75,
-      "stop_price": 24.61,
-      "target_price": 25.04,
-      "current_price": 24.735,
-      "cost_basis": 5519.25,
-      "entry_time": "2026-02-06 11:04:31",
-      "signal": "GAPPER",
-      "change_at_entry": 17.05,
-      "rel_volume": 1.9,
-      "highest_since_entry": 24.75,
-      "trailing_active": false,
-      "unrealized_pnl": -3.35,
-      "unrealized_pct": -0.06
+      "unrealized_pnl": -172.05,
+      "unrealized_pct": -2.09
     },
     {
       "ticker": "PLSE",
@@ -44,24 +27,56 @@
       "entry_price": 19.47,
       "stop_price": 18.89,
       "target_price": 20.64,
-      "current_price": 19.525,
+      "current_price": 20.08,
       "cost_basis": 3699.3,
       "entry_time": "2026-02-06 11:04:31",
       "signal": "GAPPER",
       "change_at_entry": 42.23,
       "rel_volume": 1.7,
-      "highest_since_entry": 19.525,
+      "highest_since_entry": 20.08,
       "trailing_active": false,
-      "unrealized_pnl": 10.45,
-      "unrealized_pct": 0.28
+      "unrealized_pnl": 115.9,
+      "unrealized_pct": 3.13
+    },
+    {
+      "ticker": "IDEQ",
+      "shares": 129,
+      "entry_price": 33.4,
+      "stop_price": 33.17,
+      "target_price": 33.85,
+      "current_price": 33.4,
+      "cost_basis": 4308.6,
+      "entry_time": "2026-02-06 11:51:07",
+      "signal": "BREAKOUT",
+      "change_at_entry": 2.55,
+      "rel_volume": 4.8,
+      "highest_since_entry": 33.4,
+      "trailing_active": false,
+      "unrealized_pnl": 0,
+      "unrealized_pct": 0
     }
   ],
-  "closed_trades": [],
-  "day_pnl": 0,
-  "total_pnl": 0,
-  "total_trades": 0,
-  "winning_trades": 0,
+  "closed_trades": [
+    {
+      "ticker": "ROIV",
+      "side": "LONG",
+      "entry_price": 24.75,
+      "exit_price": 25.12,
+      "shares": 223,
+      "entry_time": "2026-02-06 11:04:31",
+      "exit_time": "2026-02-06 11:51:07",
+      "pnl": 82.51,
+      "pnl_pct": 1.49,
+      "exit_reason": "TARGET_HIT",
+      "signal": "GAPPER",
+      "hold_time": "0:46:36.259359"
+    }
+  ],
+  "day_pnl": 82.51,
+  "total_pnl": 82.51,
+  "total_trades": 1,
+  "winning_trades": 1,
   "losing_trades": 0,
-  "last_scan": "2026-02-06 11:05:17",
-  "scan_count": 3
+  "last_scan": "2026-02-06 11:51:06",
+  "scan_count": 4
 }
