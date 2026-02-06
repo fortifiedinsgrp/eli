@@ -10,7 +10,7 @@
       "entry_price": 19.47,
       "stop_price": 18.89,
       "target_price": 20.64,
-      "current_price": 19.768,
+      "current_price": 19.575,
       "cost_basis": 3699.3,
       "entry_time": "2026-02-06 11:04:31",
       "signal": "GAPPER",
@@ -18,8 +18,8 @@
       "rel_volume": 1.7,
       "highest_since_entry": 20.1539,
       "trailing_active": false,
-      "unrealized_pnl": 56.62,
-      "unrealized_pct": 1.53
+      "unrealized_pnl": 19.95,
+      "unrealized_pct": 0.54
     },
     {
       "ticker": "IDEQ",
@@ -27,16 +27,16 @@
       "entry_price": 33.4,
       "stop_price": 33.17,
       "target_price": 33.85,
-      "current_price": 33.49,
+      "current_price": 33.52,
       "cost_basis": 4308.6,
       "entry_time": "2026-02-06 11:51:07",
       "signal": "BREAKOUT",
       "change_at_entry": 2.55,
       "rel_volume": 4.8,
-      "highest_since_entry": 33.51,
+      "highest_since_entry": 33.52,
       "trailing_active": false,
-      "unrealized_pnl": 11.61,
-      "unrealized_pct": 0.27
+      "unrealized_pnl": 15.48,
+      "unrealized_pct": 0.36
     },
     {
       "ticker": "JIG",
@@ -44,7 +44,7 @@
       "entry_price": 77.58,
       "stop_price": 76.78,
       "target_price": 79.17,
-      "current_price": 77.68,
+      "current_price": 77.69,
       "cost_basis": 5508.18,
       "entry_time": "2026-02-06 12:31:56",
       "signal": "BREAKOUT",
@@ -52,8 +52,8 @@
       "rel_volume": 54.4,
       "highest_since_entry": 77.79,
       "trailing_active": false,
-      "unrealized_pnl": 7.1,
-      "unrealized_pct": 0.13
+      "unrealized_pnl": 7.81,
+      "unrealized_pct": 0.14
     }
   ],
   "closed_trades": [
@@ -91,6 +91,6 @@
   "total_trades": 2,
   "winning_trades": 1,
   "losing_trades": 1,
-  "last_scan": "2026-02-06 15:35:01",
-  "scan_count": 20
+  "last_scan": "2026-02-06 15:40:01",
+  "scan_count": 21
 }
