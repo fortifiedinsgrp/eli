@@ -68,5 +68,47 @@
     "exit_reason": "EOD_CLOSE",
     "signal": "BREAKOUT",
     "hold_time": "3:18:07.119012"
+  },
+  {
+    "ticker": "AGEM",
+    "side": "LONG",
+    "entry_price": 42.95,
+    "exit_price": 42.95,
+    "shares": 191,
+    "entry_time": "2026-02-06 15:50:03",
+    "exit_time": "2026-02-06 15:55:02",
+    "pnl": 0.0,
+    "pnl_pct": 0.0,
+    "exit_reason": "EOD_CLOSE",
+    "signal": "BREAKOUT",
+    "hold_time": "0:04:59.744803"
+  },
+  {
+    "ticker": "SEG",
+    "side": "LONG",
+    "entry_price": 20.01,
+    "exit_price": 20.04,
+    "shares": 276,
+    "entry_time": "2026-02-06 15:50:03",
+    "exit_time": "2026-02-06 15:55:02",
+    "pnl": 8.28,
+    "pnl_pct": 0.15,
+    "exit_reason": "EOD_CLOSE",
+    "signal": "BREAKOUT",
+    "hold_time": "0:04:59.744803"
+  },
+  {
+    "ticker": "JIVE",
+    "side": "LONG",
+    "entry_price": 88.87,
+    "exit_price": 88.87,
+    "shares": 41,
+    "entry_time": "2026-02-06 15:50:03",
+    "exit_time": "2026-02-06 15:55:02",
+    "pnl": -0.0,
+    "pnl_pct": -0.0,
+    "exit_reason": "EOD_CLOSE",
+    "signal": "BREAKOUT",
+    "hold_time": "0:04:59.744803"
   }
 ]
