@@ -1,7 +1,7 @@
 import { Outlet, NavLink } from 'react-router-dom'
 import { 
   Home, MessageSquare, CheckSquare, Clock, 
-  FileText, Calendar, FolderOpen, Zap, TrendingUp 
+  FileText, Calendar, FolderOpen, Zap, TrendingUp, Newspaper 
 } from 'lucide-react'
 
 const navItems = [
@@ -9,9 +9,9 @@ const navItems = [
   { to: '/chat', icon: MessageSquare, label: 'Chat' },
   { to: '/tasks', icon: CheckSquare, label: 'Tasks' },
   { to: '/trading', icon: TrendingUp, label: 'Trading' },
+  { to: '/news', icon: Newspaper, label: 'News' },
   { to: '/history', icon: Clock, label: 'History' },
   { to: '/notes', icon: FileText, label: 'Notes' },
-  { to: '/digests', icon: Calendar, label: 'Daily Digests' },
   { to: '/documents', icon: FolderOpen, label: 'Documents' },
 ]
 

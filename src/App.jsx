@@ -11,6 +11,8 @@ import Digests from './pages/Digests'
 import DigestPage from './pages/DigestPage'
 import Documents from './pages/Documents'
 import Trading from './pages/Trading'
+import News from './pages/News'
+import NewsDigest from './pages/NewsDigest'
 
 const queryClient = new QueryClient()
 
@@ -30,6 +32,8 @@ function App() {
             <Route path="digests/:id" element={<DigestPage />} />
             <Route path="documents" element={<Documents />} />
             <Route path="trading" element={<Trading />} />
+            <Route path="news" element={<News />} />
+            <Route path="news/:date" element={<NewsDigest />} />
           </Route>
         </Routes>
       </BrowserRouter>
