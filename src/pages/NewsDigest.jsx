@@ -5,6 +5,27 @@ import {
   ExternalLink, Newspaper, Clock, MapPin
 } from 'lucide-react';
 
+// Render text with markdown-style links: [text](url)
+function RichText({ children }) {
+  if (!children) return null;
+  const parts = [];
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let last = 0;
+  let match;
+  while ((match = regex.exec(children)) !== null) {
+    if (match.index > last) parts.push(children.slice(last, match.index));
+    parts.push(
+      <a key={match.index} href={match[2]} target="_blank" rel="noopener noreferrer"
+         className="text-blue-400 hover:text-blue-300 hover:underline">
+        {match[1]}
+      </a>
+    );
+    last = regex.lastIndex;
+  }
+  if (last < children.length) parts.push(children.slice(last));
+  return <>{parts}</>;
+}
+
 export default function NewsDigest() {
   const { date } = useParams();
   const [digest, setDigest] = useState(null);
@@ -133,7 +154,7 @@ export default function NewsDigest() {
                 {category.summary && (
                   <div className="mb-6">
                     {category.summary.split('\n').filter(Boolean).map((para, i) => (
-                      <p key={i} className="text-slate-200 leading-relaxed mb-3">{para}</p>
+                      <p key={i} className="text-slate-200 leading-relaxed mb-3"><RichText>{para}</RichText></p>
                     ))}
                   </div>
                 )}
@@ -145,7 +166,7 @@ export default function NewsDigest() {
                       {sub.flag && <span className="text-lg">{sub.flag}</span>}
                       {sub.name}
                     </h3>
-                    <p className="text-slate-300 text-sm mb-3">{sub.summary}</p>
+                    <p className="text-slate-300 text-sm mb-3"><RichText>{sub.summary}</RichText></p>
                     {sub.links?.length > 0 && (
                       <ul className="space-y-1">
                         {sub.links.map((link, i) => (
