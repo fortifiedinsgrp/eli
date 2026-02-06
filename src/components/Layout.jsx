@@ -1,13 +1,14 @@
 import { Outlet, NavLink } from 'react-router-dom'
 import { 
   Home, MessageSquare, CheckSquare, Clock, 
-  FileText, Calendar, FolderOpen, Zap 
+  FileText, Calendar, FolderOpen, Zap, TrendingUp 
 } from 'lucide-react'
 
 const navItems = [
   { to: '/', icon: Home, label: 'Dashboard' },
   { to: '/chat', icon: MessageSquare, label: 'Chat' },
   { to: '/tasks', icon: CheckSquare, label: 'Tasks' },
+  { to: '/trading', icon: TrendingUp, label: 'Trading' },
   { to: '/history', icon: Clock, label: 'History' },
   { to: '/notes', icon: FileText, label: 'Notes' },
   { to: '/digests', icon: Calendar, label: 'Daily Digests' },
