@@ -96,33 +96,33 @@ export default function News() {
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-            <Newspaper className="w-8 h-8 text-blue-600" />
+          <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <Newspaper className="w-8 h-8 text-blue-500" />
             News Digests
           </h1>
-          <p className="text-gray-600 mt-1">
+          <p className="text-slate-400 mt-1">
             Curated daily briefings on global events, science, and sports
           </p>
         </div>
 
         {/* Categories Legend */}
-        <div className="bg-white rounded-lg border p-4 mb-6">
-          <h3 className="text-sm font-medium text-gray-500 mb-3">Categories</h3>
+        <div className="bg-slate-800 rounded-lg border border-slate-700 p-4 mb-6">
+          <h3 className="text-sm font-medium text-slate-400 mb-3">Categories</h3>
           <div className="flex flex-wrap gap-4">
-            <div className="flex items-center gap-2 text-sm">
-              <Globe className="w-4 h-4 text-blue-600" />
+            <div className="flex items-center gap-2 text-sm text-slate-200">
+              <Globe className="w-4 h-4 text-blue-500" />
               <span>Global Events</span>
             </div>
-            <div className="flex items-center gap-2 text-sm">
-              <Flag className="w-4 h-4 text-purple-600" />
+            <div className="flex items-center gap-2 text-sm text-slate-200">
+              <Flag className="w-4 h-4 text-purple-500" />
               <span>Country Focus</span>
             </div>
-            <div className="flex items-center gap-2 text-sm">
-              <Cpu className="w-4 h-4 text-green-600" />
+            <div className="flex items-center gap-2 text-sm text-slate-200">
+              <Cpu className="w-4 h-4 text-emerald-500" />
               <span>Science & Tech</span>
             </div>
-            <div className="flex items-center gap-2 text-sm">
-              <Trophy className="w-4 h-4 text-orange-600" />
+            <div className="flex items-center gap-2 text-sm text-slate-200">
+              <Trophy className="w-4 h-4 text-orange-500" />
               <span>Sports</span>
             </div>
           </div>
@@ -130,13 +130,13 @@ export default function News() {
 
         {/* Digest List */}
         {digests.length === 0 ? (
-          <div className="text-center py-16 bg-white rounded-xl border">
-            <Newspaper className="w-16 h-16 mx-auto mb-4 text-gray-300" />
-            <h2 className="text-xl font-semibold text-gray-600 mb-2">No digests yet</h2>
-            <p className="text-gray-500">
+          <div className="text-center py-16 bg-slate-800 rounded-xl border border-slate-700">
+            <Newspaper className="w-16 h-16 mx-auto mb-4 text-slate-600" />
+            <h2 className="text-xl font-semibold text-slate-300 mb-2">No digests yet</h2>
+            <p className="text-slate-400">
               Ask Eli to generate your first daily news digest.
             </p>
-            <p className="text-sm text-gray-400 mt-4">
+            <p className="text-sm text-slate-500 mt-4">
               Say: "Generate my daily news digest"
             </p>
           </div>
@@ -148,19 +148,19 @@ export default function News() {
                 <Link
                   key={digest.date}
                   to={`/news/${digest.date}`}
-                  className="block bg-white rounded-xl border p-5 hover:shadow-md transition-shadow group"
+                  className="block bg-slate-800 rounded-xl border border-slate-700 p-5 hover:bg-slate-750 hover:border-slate-600 transition-all group"
                 >
                   <div className="flex items-center justify-between">
                     <div>
                       <div className="flex items-center gap-2 mb-1">
-                        <Calendar className="w-4 h-4 text-gray-400" />
-                        <span className="text-sm text-gray-500">{digest.date}</span>
+                        <Calendar className="w-4 h-4 text-slate-500" />
+                        <span className="text-sm text-slate-400">{digest.date}</span>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600">
+                      <h3 className="text-lg font-semibold text-white group-hover:text-blue-400">
                         {formatDate(digest.date)}
                       </h3>
                       {digest.headline && (
-                        <p className="text-gray-600 text-sm mt-1 line-clamp-2">
+                        <p className="text-slate-300 text-sm mt-1 line-clamp-2">
                           {digest.headline}
                         </p>
                       )}
@@ -169,7 +169,7 @@ export default function News() {
                           <Icon key={i} className={`w-4 h-4 text-${color}-500`} />
                         ))}
                         {digest.generatedAt && (
-                          <span className="text-xs text-gray-400 flex items-center gap-1">
+                          <span className="text-xs text-slate-500 flex items-center gap-1">
                             <Clock className="w-3 h-3" />
                             {new Date(digest.generatedAt).toLocaleTimeString([], { 
                               hour: '2-digit', 
@@ -179,7 +179,7 @@ export default function News() {
                         )}
                       </div>
                     </div>
-                    <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600" />
+                    <ChevronRight className="w-5 h-5 text-slate-500 group-hover:text-blue-400" />
                   </div>
                 </Link>
               );
