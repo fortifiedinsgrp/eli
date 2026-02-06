@@ -14,14 +14,28 @@ export default function NewsDigest() {
     loadDigest();
   }, [date]);
 
-  const loadDigest = () => {
-    // Load from localStorage
+  const loadDigest = async () => {
+    // 1. Try localStorage first
     const key = `eli_digest_${date}`;
     const saved = localStorage.getItem(key);
     
     if (saved) {
       setDigest(JSON.parse(saved));
+      setLoading(false);
+      return;
     }
+    
+    // 2. Try fetching from public folder
+    try {
+      const res = await fetch(`/digests/${date}.json`);
+      if (res.ok) {
+        const data = await res.json();
+        setDigest(data);
+      }
+    } catch (e) {
+      console.warn(`Failed to load digest ${date}:`, e);
+    }
+    
     setLoading(false);
   };
 

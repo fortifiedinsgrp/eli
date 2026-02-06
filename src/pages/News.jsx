@@ -13,19 +13,41 @@ export default function News() {
     loadDigests();
   }, []);
 
-  const loadDigests = () => {
-    // Find all digest keys in localStorage
+  const loadDigests = async () => {
     const digestList = [];
+    
+    // 1. Load from localStorage
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key?.startsWith('eli_digest_')) {
         const date = key.replace('eli_digest_', '');
         const data = JSON.parse(localStorage.getItem(key));
-        digestList.push({
-          date,
-          ...data,
-        });
+        digestList.push({ date, ...data, source: 'local' });
       }
+    }
+    
+    // 2. Load from public digests folder
+    try {
+      const indexRes = await fetch('/digests/index.json');
+      if (indexRes.ok) {
+        const index = await indexRes.json();
+        for (const item of index.digests || []) {
+          // Skip if already loaded from localStorage
+          if (!digestList.find(d => d.date === item.date)) {
+            try {
+              const digestRes = await fetch(`/digests/${item.date}.json`);
+              if (digestRes.ok) {
+                const data = await digestRes.json();
+                digestList.push({ ...data, source: 'remote' });
+              }
+            } catch (e) {
+              console.warn(`Failed to load digest ${item.date}:`, e);
+            }
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to load digest index:', e);
     }
     
     // Sort by date descending
