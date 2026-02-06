@@ -1,161 +1,54 @@
 {
   "date": "2026-02-06",
-  "generatedAt": "2026-02-06T03:15:00Z",
-  "headline": "US-Iran talks begin amid conflict fears; Spain battered by Storm Leonardo; Chess world awaits Candidates",
+  "headline": "US-Iran nuclear talks begin in Oman; Islamabad mosque bombing kills 31; Winter Olympics open in Milan-Cortina; Russian GRU general shot in Moscow",
   "categories": [
     {
-      "id": "global",
-      "title": "🌍 Global Events",
-      "summary": "Major diplomatic developments as US and Iran begin direct talks amid fears of escalating conflict. Russia and Ukraine exchanged prisoners as peace negotiations ended without breakthrough, while Ukrainian war widows are moving graves to Kyiv fearing Russian advances. In the UK, PM Starmer faces fallout over the Epstein-Mandelson scandal, apologizing to victims.\n\nHumanitarian crises deepen across multiple regions: famine is spreading in Sudan's North Darfur according to the UN, aid workers are missing after airstrikes hit a South Sudan hospital, and dozens of Muslims were reportedly massacred in Nigeria for refusing to join jihadists. Venezuela passed an amnesty bill for political prisoners in a significant first step.",
-      "links": [
-        {"title": "US and Iran talks to begin as fears of direct conflict continue", "url": "https://www.bbc.com/news/world", "source": "BBC"},
-        {"title": "Russia and Ukraine exchange prisoners as peace talks end without breakthrough", "url": "https://www.bbc.com/news/world", "source": "BBC"},
-        {"title": "Fearing Russia will seize her town, war widow moves husband's grave to Kyiv", "url": "https://www.bbc.com/news/world", "source": "BBC"},
-        {"title": "Starmer apologises to Epstein victims for believing Mandelson's 'lies'", "url": "https://www.bbc.com/news/world", "source": "BBC"},
-        {"title": "Venezuela passes amnesty bill for political prisoners", "url": "https://www.dw.com", "source": "Deutsche Welle"},
-        {"title": "Famine spreading in Sudan's North Darfur, UN says", "url": "https://www.dw.com", "source": "Deutsche Welle"},
-        {"title": "Trump rejects call from Russia's Putin to extend cap on nuclear deployments", "url": "https://www.aljazeera.com", "source": "Al Jazeera"},
-        {"title": "Activists announce new aid flotilla to set sail for Gaza in March", "url": "https://www.aljazeera.com", "source": "Al Jazeera"}
+      "name": "Global Events",
+      "paragraphs": [
+        "The United States and Iran have begun high-stakes nuclear negotiations in Oman, mediated by Omani officials, amid deep disagreements over whether to expand the agenda beyond Tehran's nuclear program to include its missile arsenal. President Trump warned he has military options at his disposal if diplomacy fails, while Germany's incoming Chancellor Friedrich Merz voiced concern about further escalation during his Gulf tour. Separately, at least 31 people were killed and over 169 wounded in a suicide bombing at the Khadija al-Kubra Shiite mosque in Islamabad during Friday prayers, one of the deadliest attacks in Pakistan's capital in years. Sources: [Reuters](https://www.reuters.com/world/middle-east/iran-us-negotiate-oman-amid-deep-rifts-mounting-war-fears-2026-02-06/), [Al Jazeera](https://www.aljazeera.com/news/2026/2/6/explosion-rocks-mosque-in-pakistans-islamabad), [BBC](https://www.bbc.com/news/articles/cr57g1y8286o).",
+        "In Moscow, Lt. Gen. Vladimir Alexeyev — the number-two official in Russia's GRU military intelligence — was shot multiple times in an apparent assassination attempt; the attacker fled the scene and is being hunted. Meanwhile, Elon Musk shut down Starlink terminals across the Ukrainian front line after a plea from Kyiv, cutting off internet access for both Russian forces and some Ukrainian units operating gray-market devices. Canada and France announced new consulates in Greenland in a show of solidarity after Trump's repeated demands for the Arctic territory. The 2026 Winter Olympics officially open tonight in Milan-Cortina with a ceremony at San Siro Stadium. Sources: [BBC](https://www.bbc.com/news/articles/c3686nzexp3o), [Kyiv Post](https://www.kyivpost.com/post/69509), [BBC](https://www.bbc.com/news/articles/c0r4lrly44xo), [NBC Olympics](https://www.nbcolympics.com/news/how-watch-opening-ceremony-2026-milan-cortina-olympics-tv-and-stream-schedule)."
       ]
     },
     {
-      "id": "countries",
-      "title": "🌐 Country Focus",
-      "summary": "News from your tracked countries: Japan, Germany, Portugal, Spain, Paraguay, Mexico, and Guatemala.",
-      "subcategories": [
-        {
-          "name": "Japan 🇯🇵",
-          "flag": "🇯🇵",
-          "summary": "Trump has endorsed Sanae Takaichi in Sunday's election and announced a March 19 summit. The conservative wing faces deepening divisions in Fukui Prefecture. Meanwhile, Japanese cities are grappling with tourism challenges—one city cancelled its cherry blossom festival due to badly behaved tourists. Soaring food prices pose risks to Takaichi's election prospects.",
-          "links": [
-            {"title": "Trump endorses Takaichi in Sunday's election and announces March 19 summit", "url": "https://www.japantimes.co.jp", "source": "Japan Times"},
-            {"title": "Soaring food bills pose risk to Takaichi's election prospects", "url": "https://www.japantimes.co.jp", "source": "Japan Times"},
-            {"title": "Japanese city cancels cherry blossom festival over badly behaved tourists", "url": "https://www.bbc.com/news/world", "source": "BBC"}
-          ]
-        },
-        {
-          "name": "Germany 🇩🇪",
-          "flag": "🇩🇪",
-          "summary": "Germany continues monitoring developments across Europe. Trump endorsed Prime Minister Viktor Orban for Hungary's April election, a move with implications for EU-US relations. German authorities are tracking developments in the ongoing Ukraine conflict.",
-          "links": [
-            {"title": "Trump endorses PM Viktor Orban for Hungary's April election", "url": "https://www.dw.com", "source": "Deutsche Welle"},
-            {"title": "In freezing Kyiv, Ukrainians endure without heat, power", "url": "https://www.dw.com", "source": "Deutsche Welle"}
-          ]
-        },
-        {
-          "name": "España 🇪🇸",
-          "flag": "🇪🇸",
-          "summary": "La borrasca 'Leonardo' ha golpeado España con fuerza. El Guadalquivir dobla la altura del nivel rojo de alerta en Córdoba, alcanzando los cinco metros y obligando al desalojo de 400 familias. Grazalema enfrenta un posible desalojo total con un acuífero 'colmatado', agua manando de las paredes y un extraño crujido en el suelo. Mientras tanto, el PP enfrenta escándalo político por acusaciones de acoso contra el alcalde de Móstoles.",
-          "links": [
-            {"title": "La borrasca 'Leonardo' desborda Andalucía y pone en alerta a Extremadura y Castilla-La Mancha", "url": "https://elpais.com", "source": "El País"},
-            {"title": "El Guadalquivir dobla la altura del nivel rojo de alerta en Córdoba", "url": "https://elpais.com", "source": "El País"},
-            {"title": "Grazalema ante su desalojo total: un acuífero 'colmatado'", "url": "https://elpais.com", "source": "El País"},
-            {"title": "El PP de Madrid presionó a una edil para tapar acusación de acoso contra el alcalde de Móstoles", "url": "https://elpais.com", "source": "El País"}
-          ]
-        },
-        {
-          "name": "Portugal 🇵🇹",
-          "flag": "🇵🇹",
-          "summary": "Portugal is also being affected by Storm Leonardo, with rains pummeling the Iberian Peninsula. One person dead and one missing reported across Spain and Portugal from the severe weather.",
-          "links": [
-            {"title": "Rains pummel Spain, Portugal, leaving 1 dead, 1 missing", "url": "https://www.dw.com", "source": "Deutsche Welle"}
-          ]
-        },
-        {
-          "name": "México 🇲🇽",
-          "flag": "🇲🇽",
-          "summary": "Continúa la cobertura de las políticas de inmigración de Estados Unidos que afectan directamente a México. Los demócratas exigen reformas a Homeland Security sobre operaciones de inmigración. El sitio web 'TrumpRx' lanzado en EE.UU. promete reducir precios de medicinas.",
-          "links": [
-            {"title": "Democrats demand reforms to Homeland Security over immigration operations", "url": "https://www.aljazeera.com", "source": "Al Jazeera"},
-            {"title": "'TrumpRx' website launches in US with promise to lower price of medicine", "url": "https://www.aljazeera.com", "source": "Al Jazeera"}
-          ]
-        },
-        {
-          "name": "Guatemala 🇬🇹",
-          "flag": "🇬🇹",
-          "summary": "Las políticas de inmigración de EE.UU. continúan impactando a Guatemala. Seguimiento de deportaciones y operaciones fronterizas que afectan a ciudadanos guatemaltecos.",
-          "links": [
-            {"title": "Democrats demand reforms to Homeland Security over immigration operations", "url": "https://www.aljazeera.com", "source": "Al Jazeera"}
-          ]
-        },
-        {
-          "name": "Paraguay 🇵🇾",
-          "flag": "🇵🇾",
-          "summary": "Noticias regionales de Sudamérica: Venezuela avanza con amnistía para presos políticos. Cuba anuncia plan para enfrentar escasez de combustible ante el bloqueo estadounidense.",
-          "links": [
-            {"title": "Venezuela passes amnesty bill for political prisoners", "url": "https://www.dw.com", "source": "Deutsche Welle"},
-            {"title": "Cuba to introduce plan to address fuel shortage amid US blockade", "url": "https://www.aljazeera.com", "source": "Al Jazeera"}
-          ]
-        }
+      "name": "Japan",
+      "paragraphs": [
+        "U.S. President Donald Trump gave his 'total endorsement' of Japanese Prime Minister Sanae Takaichi ahead of Sunday's snap lower-house election, adding he looks forward to hosting her at the White House next month. Polls suggest Takaichi's ruling coalition could win a supermajority, vindicating her decision to call early elections after a trade-and-minerals deal with Washington in October. It's a rare and noteworthy intervention — U.S. presidents almost never publicly endorse candidates in foreign elections. Sources: [Reuters](https://www.reuters.com/world/asia-pacific/trump-endorses-japanese-pm-takaichi-ahead-sunday-election-2026-02-05/), [BBC](https://www.bbc.com/news/articles/c5yd14r2mgno), [CNBC](https://www.cnbc.com/2026/02/06/japan-election-takaichi-ldp-landslide-polls-ldp-trump-innovation-party-nikkei.html).",
+        "Toyota Motor announced a surprise leadership change: CEO Koji Sato will step down and be replaced by CFO Kenta Kon, a close ally and former secretary of Chairman Akio Toyoda. It's the automaker's second CEO transition in three years as it navigates intensifying competition from Chinese EV rivals. Additionally, Japan's Mitsui & Co is reportedly close to buying a stake in the second phase of QatarEnergy's massive North Field LNG project to secure stable energy supplies. Japanese speed skater Nana Takagi is also in the spotlight as she prepares to defend her Olympic title at the Milan-Cortina Games. Sources: [Reuters](https://www.reuters.com/sustainability/boards-policy-regulation/toyota-ceo-sato-step-down-be-replaced-by-cfo-kon-2026-02-06/), [Bloomberg](https://www.bloomberg.com/news/articles/2026-02-06/toyota-motor-appoints-kenta-kon-as-new-chief-executive-officer), [Asahi Shimbun](https://www.asahi.com/ajw/)."
       ]
     },
     {
-      "id": "science",
-      "title": "🔬 Science & Technology",
-      "summary": "Major AI consolidation: Elon Musk's SpaceX and xAI have merged to create the world's most valuable private company. ChatGPT boss Sam Altman faced online criticism described as a 'tantrum' over rival DeepSeek's Super Bowl ad. X (formerly Twitter) offices were raided in France as UK opens fresh investigation into the Grok AI system.\n\nIn regulatory news, China has banned hidden car door handles over safety concerns. The UK's £8bn research fund faces 'hard decisions' as it pauses new grants. Pinterest laid off engineers for tracking internal staff job cuts. The US launched a new plan to tackle China's critical minerals dominance in the tech supply chain.",
-      "links": [
-        {"title": "Musk's SpaceX and xAI merge to make world's most valuable private company", "url": "https://www.bbc.com/news/technology", "source": "BBC"},
-        {"title": "ChatGPT boss ridiculed for online 'tantrum' over rival's Super Bowl ad", "url": "https://www.bbc.com/news/technology", "source": "BBC"},
-        {"title": "X offices raided in France as UK opens fresh investigation into Grok", "url": "https://www.bbc.com/news/technology", "source": "BBC"},
-        {"title": "US launches plan to tackle China's critical minerals dominance", "url": "https://www.bbc.com/news/technology", "source": "BBC"},
-        {"title": "UK's £8bn research fund faces 'hard decisions' as it pauses new grants", "url": "https://www.bbc.com/news/technology", "source": "BBC"},
-        {"title": "China bans hidden car door handles over safety concerns", "url": "https://www.bbc.com/news/technology", "source": "BBC"},
-        {"title": "What is the 'social media network for AI' Moltbook?", "url": "https://www.bbc.com/news/technology", "source": "BBC"},
-        {"title": "Netflix and Warner Bros struggle to defend merger", "url": "https://www.bbc.com/news/technology", "source": "BBC"}
+      "name": "Germany",
+      "paragraphs": [
+        "Flight cancellations continued for a second day at Berlin Brandenburg Airport as freezing rain and black ice paralyzed the runway. All departures were grounded on Thursday and disruptions persisted into Friday morning, causing major travel chaos across the region. Germany's December industrial production also came in far worse than expected at -1.9% month-on-month (vs. -0.3% expected), while exports to the United States plunged last year due to Trump-era tariffs. Sources: [The Local](https://www.thelocal.de/20260206/today-in-germany-a-roundup-of-the-latest-news-on-friday-111), [Reuters](https://www.reuters.com/business/environment/no-takeoffs-berlin-airport-due-weather-conditions-2026-02-05/).",
+        "Friedrich Merz, widely expected to become the next German chancellor after upcoming elections, warned of potential escalation as the US-Iran talks got underway, saying the issue dominated his trip to the Gulf region. On the domestic front, the number of marriages in Germany hit a record low in 2024, according to newly released data. Stellantis — whose brands include Opel, a major German employer — announced a staggering €22.2 billion in charges as it scales back EV ambitions, sending shares plunging and raising concerns about the future of European automaking. Sources: [Al Jazeera](https://www.aljazeera.com/news/2026/2/5/germanys-merz-warns-of-potential-escalation-as-us-iran-prepare-for-talks), [Reuters](https://www.reuters.com/business/automaker-stellantis-books-222-bln-euro-writedowns-h2-2025-ev-pullback-2026-02-06/), [The Guardian](https://www.theguardian.com/business/2026/feb/06/stellantis-finances-hit-after-overestimating-pace-ev-uptake)."
       ]
     },
     {
-      "id": "sports",
-      "title": "🏆 Sports",
-      "summary": "Your teams and interests across football, basketball, soccer, and chess.",
-      "subcategories": [
-        {
-          "name": "🏈 NFL (Dolphins)",
-          "summary": "The 2026 NFL Honors awarded the league's biggest awards. Big news: Cowboys have been picked to play in the NFL's first game in Rio de Janeiro. Jets DT Phillips said coach Glenn inherited a 'cancerous' group. Looking ahead to the offseason and draft preparations.",
-          "links": [
-            {"title": "2026 NFL Honors: Who won the league's biggest awards?", "url": "https://www.espn.com/nfl/", "source": "ESPN"},
-            {"title": "Cowboys picked to play in NFL's first game in Rio", "url": "https://www.espn.com/nfl/", "source": "ESPN"},
-            {"title": "Jets DT Phillips: Glenn inherited 'cancerous' group", "url": "https://www.espn.com/nfl/", "source": "ESPN"}
-          ]
-        },
-        {
-          "name": "🏀 NBA (Thunder, Knicks, Heat)",
-          "summary": "Wild trade deadline week! The Cavaliers and Thunder emerged as winners according to analysts. Nine big questions remain including what's next for Giannis. Bulls aim to exit the 'middle' with busy deadline activity. Clippers traded Zubac to Pacers, getting 2 first-round picks back.",
-          "links": [
-            {"title": "Trade deadline winners, losers: How the Cavs, Thunder got better", "url": "https://www.espn.com/nba/", "source": "ESPN"},
-            {"title": "Nine big questions on NBA trade season: What's next for Giannis?", "url": "https://www.espn.com/nba/", "source": "ESPN"},
-            {"title": "Grading every NBA trade: Which teams fared best?", "url": "https://www.espn.com/nba/", "source": "ESPN"},
-            {"title": "Bulls aim to exit NBA's 'middle' with busy deadline", "url": "https://www.espn.com/nba/", "source": "ESPN"}
-          ]
-        },
-        {
-          "name": "⚽ Soccer (EPL & La Liga)",
-          "summary": "Six Nations rugby: France comfortably beat Ireland in the opener, with Ireland needing to 'stop rot' after Paris humbling. Leicester City docked six points for financial breaches. England wing Feyi-Waboso is a doubt for the Wales game.",
-          "links": [
-            {"title": "France comfortably beat Ireland in Six Nations opener", "url": "https://www.bbc.com/sport", "source": "BBC Sport"},
-            {"title": "Leicester docked six points for financial breaches", "url": "https://www.bbc.com/sport", "source": "BBC Sport"},
-            {"title": "Ireland must 'stop rot' after Paris humbling", "url": "https://www.bbc.com/sport", "source": "BBC Sport"}
-          ]
-        },
-        {
-          "name": "♟️ Chess",
-          "summary": "TATA STEEL RECAP: GM Nodirbek Abdusattorov won the 2026 Tata Steel Chess Masters with 9/13 points, defeating Arjun Erigaisi's Evans Gambit in a dramatic final round. Fellow Uzbek GM Javokhir Sindarov completed the Uzbek domination with second place. Hikaru Nakamura won a historic 5th consecutive Bullet Brawl, becoming the first to win a full month.\n\nUPCOMING: The Candidates Tournament approaches—watch for qualifier announcements. GM Maxime Vachier-Lagrave won Titled Tuesday on Feb 3, scoring a perfect 10/11. Rising star: 14-year-old GM Yagiz Kaan Erdogmus described by Magnus Carlsen as 'the strongest 14-year-old in history' gained more rating points than any top-100 player.",
-          "links": [
-            {"title": "Abdusattorov Wins 'Dream' Tata Steel Masters", "url": "https://www.chess.com/news/view/abdusattorov-wins-2026-tata-steel-chess", "source": "Chess.com"},
-            {"title": "Tata Steel Chess 2026: 11 Conclusions", "url": "https://www.chess.com/news/view/2026-tata-steel-chess-conclusions", "source": "Chess.com"},
-            {"title": "Nakamura Caps Off Perfect Month With 5th Bullet Brawl Victory", "url": "https://www.chess.com/news/view/hikaru-nakamura-wins-bullet-brawl-jan-31-2026", "source": "Chess.com"},
-            {"title": "Vachier-Lagrave Wins Titled Tuesday February 3", "url": "https://www.chess.com/news/view/vachier-lagrave-wins-titled-tuesday-february-3-2026", "source": "Chess.com"},
-            {"title": "'Best 14-Year-Old Ever' Erdogmus Climbs In February Ratings", "url": "https://www.chess.com/news/view/february-2026-fide-ratings", "source": "Chess.com"}
-          ]
-        },
-        {
-          "name": "🏏 Cricket",
-          "summary": "T20 World Cup 2026 preparations continue. Sri Lanka is urging Pakistan to reconsider their India boycott. The ICC Men's T20 Cricket World Cup 2026 format has been explained with maps and charts. Winter Olympics news: Norovirus has disrupted hockey competition as Italy gears up.",
-          "links": [
-            {"title": "T20 World Cup: Sri Lanka urge Pakistan to reconsider India boycott", "url": "https://www.aljazeera.com", "source": "Al Jazeera"},
-            {"title": "ICC Men's T20 Cricket World Cup 2026 explained in maps and charts", "url": "https://www.aljazeera.com", "source": "Al Jazeera"}
-          ]
-        }
+      "name": "Portugal & Spain",
+      "paragraphs": [
+        "Storm Leonardo has battered the Iberian Peninsula, killing at least one man in Portugal when floodwaters engulfed his car in Alcácer do Sal, and leaving a young girl missing in Malaga, Spain, after she was swept away by a swollen river. The storm dumped more than 40 cm of rain in 24 hours, forcing thousands from their homes, shutting schools, and cancelling trains across both countries. Volunteers walked through flooded streets as forecasters warned another storm system is approaching. Sources: [Reuters](https://www.reuters.com/business/environment/one-dead-girl-missing-storm-leonardo-batters-portugal-spain-2026-02-05/), [Al Jazeera](https://www.aljazeera.com/news/2026/2/5/one-man-killed-girl-missing-as-storm-leonardo-hits-portugal-and-spain), [Euronews](https://www.euronews.com/video/2026/02/05/portugal-on-edge-as-storm-leonardo-triggers-new-flooding).",
+        "In Spain, DW reported on a proposed social media ban targeting minors that has sparked debate, with TikTok, Instagram, and Grok/X all in the crosshairs. El País reported that a convicted murderer of three people in Madrid appeared on US television claiming innocence despite overwhelming evidence. Barcelona remain La Liga's defending champions this season; Kylian Mbappé leads the scoring charts with 22 goals for Real Madrid. Sources: [DW](https://www.dw.com/en/spain-social-media-ban-proposal-tik-tok-instagram-grok-elon-musk-reaction/video-75805560), [El País](https://elpais.com/espana/madrid/2026-02-06/el-asesino-de-tres-personas-en-madrid-dice-en-la-television-de-ee-uu-que-es-inocente-pese-a-las-pruebas-esta-historia-me-la-montaron-en-espana.html)."
+      ]
+    },
+    {
+      "name": "Paraguay, Mexico & Guatemala",
+      "paragraphs": [
+        "Mexico's President Claudia Sheinbaum pledged humanitarian aid to Cuba and said Mexico is 'exploring all diplomatic avenues' to send fuel to the island, defying Trump's executive order threatening tariffs on countries shipping crude to Cuba. Trump claimed Sheinbaum agreed to halt oil shipments — a claim she rejected. Meanwhile, Mexico's steep tariffs on Indian imports (part of Plan México) have devastated several Indian industries already reeling under US tariffs, creating a double whammy for exporters. El País reported on machista attacks against Sheinbaum: 'Sheinbaum no es presirvienta, es tu patrona.' Sources: [The Guardian](https://www.theguardian.com/world/2026/feb/02/claudia-sheinbaum-mexico-oil-cuba-trump), [Al Jazeera](https://www.aljazeera.com/economy/2026/2/6/mexicos-tariffs-on-india-are-a-double-whammy-after-us-tariffs), [El País](https://elpais.com/opinion/2026-02-06/sheinbaum-no-es-presirvienta-es-tu-patrona.html).",
+        "In Guatemala, President Bernardo Arévalo declared a 30-day 'state of siege' on January 19 in response to armed attacks on police throughout Guatemala City. In an interview with El País, Arévalo warned that 'Guatemala's democracy is at stake in the coming month' as critical judicial appointments loom that could determine the fate of his reform agenda. The US recently signed $110 million in agreements with Guatemala for roads and rail. Paraguay formalized the Mercosur-EU free trade agreement in Asunción on January 17 after 26 years of negotiations; the US has also expanded military presence in Paraguay and Guatemala through training operations. Sources: [El País](https://english.elpais.com/international/2026-02-03/bernardo-arevalo-guatemalas-democracy-is-at-stake-in-the-coming-month.html), [Just Security](https://www.justsecurity.org/130781/guatemala-state-of-emergency-corruption/), [MercoPress](https://en.mercopress.com/paraguay), [TeleSUR](https://www.telesurtv.net/eeuu-despliegue-paraguay-guatemala-panama/)."
+      ]
+    },
+    {
+      "name": "Science, Tech & AI",
+      "paragraphs": [
+        "Democratic Senators Elizabeth Warren and Andy Kim wrote to Defense Secretary Pete Hegseth demanding a probe into Chinese investment in SpaceX, calling it 'a national security threat, potentially jeopardizing key military, intelligence, and civilian infrastructure.' They asked the Pentagon to assess whether SpaceX is subject to foreign ownership mitigation requirements and set a February 20 deadline. SpaceX is also making waves with plans for a Starlink-connected mobile device that could rival smartphones. Sources: [Reuters](https://www.reuters.com/business/autos-transportation/pentagon-asked-probe-spacex-potential-chinese-ownership-2026-02-05/), [Newsweek](https://www.newsweek.com/pentagon-pressure-review-spacex-chinese-investor-allegations-11470706).",
+        "Stellantis's €22 billion EV write-down signals the broader industry reckoning as automakers admit they overestimated the pace of the electric transition. In AI, TechCrunch reports 2026 is shaping up as 'a year of transition' from brute-force scaling to new architectures, from flashy demos to targeted deployments, and from agents that promise autonomy to ones that actually work. Stanford AI experts predict early-career workers in AI-exposed occupations are already seeing weaker employment outcomes. Gold is soaring while software stocks crash amid AI valuation concerns; Bitcoin is tumbling and consumer confidence is plummeting. Sources: [The Guardian](https://www.theguardian.com/business/2026/feb/06/stellantis-finances-hit-after-overestimating-pace-ev-uptake), [TechCrunch](https://techcrunch.com/2026/01/02/in-2026-ai-will-move-from-hype-to-pragmatism/), [Stanford HAI](https://hai.stanford.edu/news/stanford-ai-experts-predict-what-will-happen-in-2026), [Reuters](https://www.reuters.com)."
+      ]
+    },
+    {
+      "name": "Sports",
+      "paragraphs": [
+        "NFL: Super Bowl LX is set for Sunday, Feb. 8 at Levi's Stadium (6:30 PM ET) — a rematch of sorts as the New England Patriots take on the Seattle Seahawks. Bad Bunny will perform the first entirely Spanish-language halftime show. The Miami Dolphins are in full rebuild mode under new HC Jeff Hafley (hired from the Packers DC role) and GM Jon-Eric Sullivan, finalizing their coaching staff with the NFL Combine approaching. NBA: The OKC Thunder are dominating at 35-8, first in the West with +125 championship odds. The Knicks are surging at 33-18 (2nd in the East) on a 5-game winning streak that included a franchise-record 120-66 demolition of the Nets. The Heat sit at 21-19, 8th in the East. Sources: [ESPN](https://www.espn.com/nfl/game/_/gameId/401772988/seahawks-patriots), [SI](https://www.si.com/nfl/dolphins/onsi/news/what-s-ahead-in-february-and-beyond-for-dolphins-01kgqa2x802v), [Yahoo Sports](https://sports.yahoo.com/articles/2026-nba-championship-odds-thunder-150100421.html), [Basketball Reference](https://www.basketball-reference.com/teams/NYK/2026/gamelog-advanced/).",
+        "EPL: Arsenal lead the table at 53 points (16-5-3), with Man City 6 points back at 47. Aston Villa are a surprise 3rd at 46 points. Liverpool sit 6th at 39 points in a tight mid-table. Wolves are in deep trouble at the bottom with just 8 points. La Liga: Barcelona are defending champions; Mbappé leads all scorers with 22 goals for Real Madrid; Atlético Madrid hold the longest unbeaten run at 13 matches. Chess: Nodirbek Abdusattorov (Uzbekistan) won the 2026 Tata Steel Masters in dominant fashion, with compatriot Javokhir Sindarov finishing second — a complete Uzbek domination. Cricket: The ICC Men's T20 World Cup 2026 group stage wrapped February 6 in India. The Women's Premier League (WPL) concluded its group stage with Delhi Capitals qualifying for the final. Sources: [NBC Sports](https://www.nbcsports.com/soccer/news/premier-league-2025-26-table-teams-standings-for-the-new-season), [Chess.com](https://www.chess.com/news/view/2026-tata-steel-chess-conclusions), [ICC](https://www.icc-cricket.com/), [WPL](https://www.wplt20.com/schedule-fixtures-results)."
       ]
     }
   ]
