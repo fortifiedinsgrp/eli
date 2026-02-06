@@ -57,14 +57,17 @@ export default function News() {
   };
 
   const formatDate = (dateStr) => {
-    const date = new Date(dateStr);
+    // Parse YYYY-MM-DD as local date (not UTC)
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const date = new Date(y, m - 1, d);
     const today = new Date();
+    today.setHours(0, 0, 0, 0);
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
 
-    if (date.toDateString() === today.toDateString()) {
+    if (date.getTime() === today.getTime()) {
       return "Today's Digest";
-    } else if (date.toDateString() === yesterday.toDateString()) {
+    } else if (date.getTime() === yesterday.getTime()) {
       return "Yesterday's Digest";
     }
     return date.toLocaleDateString('en-US', { 
