@@ -26,5 +26,47 @@
     "exit_reason": "STOP_LOSS",
     "signal": "REVERSAL",
     "hold_time": "1:27:25.050489"
+  },
+  {
+    "ticker": "PLSE",
+    "side": "LONG",
+    "entry_price": 19.47,
+    "exit_price": 19.98,
+    "shares": 190,
+    "entry_time": "2026-02-06 11:04:31",
+    "exit_time": "2026-02-06 15:50:03",
+    "pnl": 96.9,
+    "pnl_pct": 2.62,
+    "exit_reason": "EOD_CLOSE",
+    "signal": "GAPPER",
+    "hold_time": "4:45:32.119012"
+  },
+  {
+    "ticker": "IDEQ",
+    "side": "LONG",
+    "entry_price": 33.4,
+    "exit_price": 33.52,
+    "shares": 129,
+    "entry_time": "2026-02-06 11:51:07",
+    "exit_time": "2026-02-06 15:50:03",
+    "pnl": 15.48,
+    "pnl_pct": 0.36,
+    "exit_reason": "EOD_CLOSE",
+    "signal": "BREAKOUT",
+    "hold_time": "3:58:56.119012"
+  },
+  {
+    "ticker": "JIG",
+    "side": "LONG",
+    "entry_price": 77.58,
+    "exit_price": 77.69,
+    "shares": 71,
+    "entry_time": "2026-02-06 12:31:56",
+    "exit_time": "2026-02-06 15:50:03",
+    "pnl": 7.81,
+    "pnl_pct": 0.14,
+    "exit_reason": "EOD_CLOSE",
+    "signal": "BREAKOUT",
+    "hold_time": "3:18:07.119012"
   }
 ]
