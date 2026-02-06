@@ -1,151 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { 
   TrendingUp, TrendingDown, DollarSign, Activity, 
-  Calendar, Clock, Target, AlertTriangle, Play, Pause,
-  RefreshCw, Download, Plus
+  Clock, Target, AlertTriangle, RefreshCw, 
+  Zap, BarChart3, ArrowUpRight, ArrowDownRight
 } from 'lucide-react';
 
-const STARTING_CAPITAL = 25000;
-
 export default function Trading() {
-  const [trades, setTrades] = useState([]);
-  const [positions, setPositions] = useState([]);
-  const [balance, setBalance] = useState(STARTING_CAPITAL);
-  const [isLive, setIsLive] = useState(false);
+  const [state, setState] = useState(null);
+  const [tradeLog, setTradeLog] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [lastRefresh, setLastRefresh] = useState(null);
 
-  useEffect(() => {
-    loadTradingData();
+  const loadData = useCallback(async () => {
+    try {
+      const [stateRes, logRes] = await Promise.all([
+        fetch('/trades/state.json'),
+        fetch('/trades/log.json'),
+      ]);
+      if (stateRes.ok) setState(await stateRes.json());
+      if (logRes.ok) setTradeLog(await logRes.json());
+      setLastRefresh(new Date());
+    } catch (e) {
+      console.warn('Failed to load trading data:', e);
+    }
+    setLoading(false);
   }, []);
 
-  const loadTradingData = () => {
-    const savedTrades = localStorage.getItem('eli_trades');
-    const savedPositions = localStorage.getItem('eli_positions');
-    const savedBalance = localStorage.getItem('eli_balance');
-    
-    if (savedTrades) setTrades(JSON.parse(savedTrades));
-    if (savedPositions) setPositions(JSON.parse(savedPositions));
-    if (savedBalance) setBalance(parseFloat(savedBalance));
-    
-    setLoading(false);
-  };
-
-  const saveTradingData = (newTrades, newPositions, newBalance) => {
-    localStorage.setItem('eli_trades', JSON.stringify(newTrades));
-    localStorage.setItem('eli_positions', JSON.stringify(newPositions));
-    localStorage.setItem('eli_balance', newBalance.toString());
-  };
-
-  const totalPnL = trades.reduce((sum, t) => sum + (t.pnl || 0), 0);
-  const totalReturn = ((balance - STARTING_CAPITAL) / STARTING_CAPITAL) * 100;
-  const winningTrades = trades.filter(t => t.pnl > 0);
-  const losingTrades = trades.filter(t => t.pnl <= 0);
-  const winRate = trades.length > 0 ? (winningTrades.length / trades.length) * 100 : 0;
-  const avgWin = winningTrades.length > 0 
-    ? winningTrades.reduce((s, t) => s + t.pnl, 0) / winningTrades.length 
-    : 0;
-  const avgLoss = losingTrades.length > 0 
-    ? Math.abs(losingTrades.reduce((s, t) => s + t.pnl, 0) / losingTrades.length)
-    : 0;
-  const profitFactor = avgLoss > 0 ? avgWin / avgLoss : 0;
-
-  const addManualTrade = () => {
-    const trade = {
-      id: Date.now(),
-      ticker: prompt('Ticker symbol:')?.toUpperCase(),
-      direction: prompt('Direction (long/short):')?.toLowerCase() || 'long',
-      shares: parseInt(prompt('Number of shares:') || '0'),
-      entryPrice: parseFloat(prompt('Entry price:') || '0'),
-      exitPrice: parseFloat(prompt('Exit price (0 if still open):') || '0'),
-      entryDate: prompt('Entry date (YYYY-MM-DD):') || new Date().toISOString().split('T')[0],
-      exitDate: null,
-      pnl: 0,
-      pnlPercent: 0,
-      status: 'open',
-      reason: prompt('Entry reason:') || '',
-    };
-
-    if (!trade.ticker || !trade.shares || !trade.entryPrice) {
-      alert('Invalid trade data');
-      return;
-    }
-
-    if (trade.exitPrice > 0) {
-      trade.status = 'closed';
-      trade.exitDate = new Date().toISOString().split('T')[0];
-      trade.pnl = trade.direction === 'long' 
-        ? (trade.exitPrice - trade.entryPrice) * trade.shares
-        : (trade.entryPrice - trade.exitPrice) * trade.shares;
-      trade.pnlPercent = trade.direction === 'long'
-        ? ((trade.exitPrice - trade.entryPrice) / trade.entryPrice) * 100
-        : ((trade.entryPrice - trade.exitPrice) / trade.entryPrice) * 100;
-      
-      const newTrades = [...trades, trade];
-      const newBalance = balance + trade.pnl;
-      setTrades(newTrades);
-      setBalance(newBalance);
-      saveTradingData(newTrades, positions, newBalance);
-    } else {
-      const newPositions = [...positions, { ...trade, currentPrice: trade.entryPrice }];
-      setPositions(newPositions);
-      saveTradingData(trades, newPositions, balance);
-    }
-  };
-
-  const closePosition = (positionId) => {
-    const position = positions.find(p => p.id === positionId);
-    if (!position) return;
-
-    const exitPrice = parseFloat(prompt(`Exit price for ${position.ticker}:`) || '0');
-    if (!exitPrice) return;
-
-    const pnl = position.direction === 'long'
-      ? (exitPrice - position.entryPrice) * position.shares
-      : (position.entryPrice - exitPrice) * position.shares;
-    const pnlPercent = position.direction === 'long'
-      ? ((exitPrice - position.entryPrice) / position.entryPrice) * 100
-      : ((position.entryPrice - exitPrice) / position.entryPrice) * 100;
-
-    const closedTrade = {
-      ...position,
-      exitPrice,
-      exitDate: new Date().toISOString().split('T')[0],
-      pnl,
-      pnlPercent,
-      status: 'closed',
-      exitReason: prompt('Exit reason:') || '',
-    };
-
-    const newTrades = [...trades, closedTrade];
-    const newPositions = positions.filter(p => p.id !== positionId);
-    const newBalance = balance + pnl;
-
-    setTrades(newTrades);
-    setPositions(newPositions);
-    setBalance(newBalance);
-    saveTradingData(newTrades, newPositions, newBalance);
-  };
-
-  const resetData = () => {
-    if (confirm('Reset all trading data? This cannot be undone.')) {
-      setTrades([]);
-      setPositions([]);
-      setBalance(STARTING_CAPITAL);
-      localStorage.removeItem('eli_trades');
-      localStorage.removeItem('eli_positions');
-      localStorage.removeItem('eli_balance');
-    }
-  };
-
-  const exportData = () => {
-    const data = { exportDate: new Date().toISOString(), startingCapital: STARTING_CAPITAL, currentBalance: balance, totalPnL, totalReturn, trades, positions };
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `trading_log_${new Date().toISOString().split('T')[0]}.json`;
-    a.click();
-  };
+  useEffect(() => {
+    loadData();
+    const interval = setInterval(loadData, 30000); // Auto-refresh every 30s
+    return () => clearInterval(interval);
+  }, [loadData]);
 
   if (loading) {
     return (
@@ -155,120 +40,174 @@ export default function Trading() {
     );
   }
 
+  if (!state) {
+    return (
+      <div className="p-8 text-center">
+        <BarChart3 className="w-16 h-16 mx-auto mb-4 text-slate-600" />
+        <h2 className="text-xl font-semibold text-slate-300 mb-2">Paper Trader Not Running</h2>
+        <p className="text-slate-400">The paper trading engine hasn't generated data yet. It runs every 5 minutes during market hours.</p>
+      </div>
+    );
+  }
+
+  const { positions = [], closed_trades: closedToday = [] } = state;
+  const capital = state.capital || 25000;
+  const startingCapital = state.starting_capital || 25000;
+  const dayPnl = state.day_pnl || 0;
+  const totalPnl = state.total_pnl || 0;
+  const totalTrades = state.total_trades || 0;
+  const winningTrades = state.winning_trades || 0;
+  const losingTrades = state.losing_trades || 0;
+  const winRate = totalTrades > 0 ? (winningTrades / totalTrades * 100) : 0;
+  const totalReturn = ((capital - 25000) / 25000 * 100);
+  const dayReturn = ((dayPnl) / startingCapital * 100);
+
+  // Unrealized P&L from open positions
+  const unrealizedPnl = positions.reduce((sum, p) => sum + (p.unrealized_pnl || 0), 0);
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-white">Paper Trading</h1>
-          <p className="text-slate-400">V3 Momentum Strategy</p>
+          <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+            <Zap className="w-7 h-7 text-amber-400" />
+            Day Trading — Paper Account
+          </h1>
+          <p className="text-slate-400 mt-1">
+            Auto-scanning 12,000+ stocks every 5 minutes
+          </p>
         </div>
-        <div className="flex gap-2">
-          <button onClick={addManualTrade} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-            <Plus className="w-4 h-4" /> Add Trade
-          </button>
-          <button onClick={exportData} className="flex items-center gap-2 px-4 py-2 bg-slate-700 text-slate-200 rounded-lg hover:bg-slate-600">
-            <Download className="w-4 h-4" /> Export
-          </button>
-          <button onClick={resetData} className="flex items-center gap-2 px-4 py-2 bg-red-900/50 text-red-400 rounded-lg hover:bg-red-900">
-            <RefreshCw className="w-4 h-4" /> Reset
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 text-sm text-slate-500">
+            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+            Scan #{state.scan_count || 0}
+          </div>
+          <button onClick={loadData} className="flex items-center gap-2 px-3 py-1.5 bg-slate-700 text-slate-300 rounded-lg hover:bg-slate-600 text-sm">
+            <RefreshCw className="w-3.5 h-3.5" /> Refresh
           </button>
         </div>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-900/50 rounded-lg">
-              <DollarSign className="w-5 h-5 text-blue-400" />
-            </div>
-            <span className="text-slate-400 text-sm">Balance</span>
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="bg-slate-800 rounded-xl border border-slate-700 p-5">
+          <div className="flex items-center gap-2 mb-2">
+            <DollarSign className="w-4 h-4 text-blue-400" />
+            <span className="text-slate-400 text-xs uppercase">Capital</span>
           </div>
-          <p className="text-2xl font-bold text-white">${balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
-          <p className="text-sm text-slate-500 mt-1">Started: ${STARTING_CAPITAL.toLocaleString()}</p>
-        </div>
-
-        <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className={`p-2 rounded-lg ${totalPnL >= 0 ? 'bg-emerald-900/50' : 'bg-red-900/50'}`}>
-              {totalPnL >= 0 ? <TrendingUp className="w-5 h-5 text-emerald-400" /> : <TrendingDown className="w-5 h-5 text-red-400" />}
-            </div>
-            <span className="text-slate-400 text-sm">Total P&L</span>
-          </div>
-          <p className={`text-2xl font-bold ${totalPnL >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-            {totalPnL >= 0 ? '+' : ''}${totalPnL.toLocaleString('en-US', { minimumFractionDigits: 2 })}
-          </p>
-          <p className={`text-sm mt-1 ${totalReturn >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-            {totalReturn >= 0 ? '+' : ''}{totalReturn.toFixed(2)}% return
+          <p className="text-xl font-bold text-white">${capital.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
+          <p className={`text-xs mt-1 ${totalReturn >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+            {totalReturn >= 0 ? '+' : ''}{totalReturn.toFixed(2)}% all time
           </p>
         </div>
 
-        <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-purple-900/50 rounded-lg">
-              <Target className="w-5 h-5 text-purple-400" />
-            </div>
-            <span className="text-slate-400 text-sm">Win Rate</span>
+        <div className="bg-slate-800 rounded-xl border border-slate-700 p-5">
+          <div className="flex items-center gap-2 mb-2">
+            {dayPnl >= 0 ? <TrendingUp className="w-4 h-4 text-emerald-400" /> : <TrendingDown className="w-4 h-4 text-red-400" />}
+            <span className="text-slate-400 text-xs uppercase">Day P&L</span>
           </div>
-          <p className="text-2xl font-bold text-white">{winRate.toFixed(1)}%</p>
-          <p className="text-sm text-slate-500 mt-1">{winningTrades.length}W / {losingTrades.length}L</p>
+          <p className={`text-xl font-bold ${dayPnl >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+            {dayPnl >= 0 ? '+' : ''}${dayPnl.toLocaleString('en-US', { minimumFractionDigits: 2 })}
+          </p>
+          <p className={`text-xs mt-1 ${dayReturn >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+            {dayReturn >= 0 ? '+' : ''}{dayReturn.toFixed(2)}% today
+          </p>
         </div>
 
-        <div className="bg-slate-800 rounded-xl border border-slate-700 p-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-amber-900/50 rounded-lg">
-              <Activity className="w-5 h-5 text-amber-400" />
-            </div>
-            <span className="text-slate-400 text-sm">Profit Factor</span>
+        <div className="bg-slate-800 rounded-xl border border-slate-700 p-5">
+          <div className="flex items-center gap-2 mb-2">
+            <Activity className="w-4 h-4 text-purple-400" />
+            <span className="text-slate-400 text-xs uppercase">Unrealized</span>
           </div>
-          <p className="text-2xl font-bold text-white">{profitFactor.toFixed(2)}</p>
-          <p className="text-sm text-slate-500 mt-1">Avg Win: ${avgWin.toFixed(0)} | Loss: ${avgLoss.toFixed(0)}</p>
+          <p className={`text-xl font-bold ${unrealizedPnl >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+            {unrealizedPnl >= 0 ? '+' : ''}${unrealizedPnl.toFixed(2)}
+          </p>
+          <p className="text-xs mt-1 text-slate-500">{positions.length} open position{positions.length !== 1 ? 's' : ''}</p>
+        </div>
+
+        <div className="bg-slate-800 rounded-xl border border-slate-700 p-5">
+          <div className="flex items-center gap-2 mb-2">
+            <Target className="w-4 h-4 text-amber-400" />
+            <span className="text-slate-400 text-xs uppercase">Win Rate</span>
+          </div>
+          <p className="text-xl font-bold text-white">{winRate.toFixed(0)}%</p>
+          <p className="text-xs mt-1 text-slate-500">{winningTrades}W / {losingTrades}L ({totalTrades} total)</p>
+        </div>
+
+        <div className="bg-slate-800 rounded-xl border border-slate-700 p-5">
+          <div className="flex items-center gap-2 mb-2">
+            <Clock className="w-4 h-4 text-slate-400" />
+            <span className="text-slate-400 text-xs uppercase">Last Scan</span>
+          </div>
+          <p className="text-lg font-bold text-white">
+            {state.last_scan ? new Date(state.last_scan).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--'}
+          </p>
+          <p className="text-xs mt-1 text-slate-500">
+            {lastRefresh ? `Updated ${lastRefresh.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}` : ''}
+          </p>
         </div>
       </div>
 
       {/* Open Positions */}
-      {positions.length > 0 && (
-        <div className="bg-slate-800 rounded-xl border border-amber-800/50 overflow-hidden">
-          <div className="px-6 py-4 border-b border-amber-800/50 bg-amber-900/20">
-            <h2 className="text-lg font-semibold text-amber-400 flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5" /> Open Positions ({positions.length})
-            </h2>
+      <div className={`bg-slate-800 rounded-xl border overflow-hidden ${positions.length > 0 ? 'border-amber-800/50' : 'border-slate-700'}`}>
+        <div className={`px-6 py-4 border-b ${positions.length > 0 ? 'border-amber-800/50 bg-amber-900/10' : 'border-slate-700'}`}>
+          <h2 className={`text-lg font-semibold flex items-center gap-2 ${positions.length > 0 ? 'text-amber-400' : 'text-slate-300'}`}>
+            <AlertTriangle className="w-5 h-5" />
+            Open Positions ({positions.length})
+          </h2>
+        </div>
+        {positions.length === 0 ? (
+          <div className="p-8 text-center text-slate-500">
+            No open positions. Scanner is watching for setups...
           </div>
+        ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-900">
+              <thead className="bg-slate-900/50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Ticker</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Direction</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Shares</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Entry</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Current</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">P&L</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Action</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase">Ticker</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase">Signal</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Shares</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Entry</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Current</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">P&L</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">P&L %</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Stop</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Target</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Entry Time</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-700">
-                {positions.map((pos) => {
-                  const unrealized = pos.direction === 'long'
-                    ? ((pos.currentPrice || pos.entryPrice) - pos.entryPrice) * pos.shares
-                    : (pos.entryPrice - (pos.currentPrice || pos.entryPrice)) * pos.shares;
+              <tbody className="divide-y divide-slate-700/50">
+                {positions.map((pos, i) => {
+                  const pnl = pos.unrealized_pnl || 0;
+                  const pnlPct = pos.unrealized_pct || 0;
                   return (
-                    <tr key={pos.id} className="hover:bg-slate-750">
-                      <td className="px-6 py-4 font-medium text-white">{pos.ticker}</td>
-                      <td className="px-6 py-4">
-                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${pos.direction === 'long' ? 'bg-emerald-900/50 text-emerald-400' : 'bg-red-900/50 text-red-400'}`}>
-                          {pos.direction.toUpperCase()}
+                    <tr key={i} className="hover:bg-slate-750">
+                      <td className="px-4 py-3 font-bold text-white">{pos.ticker}</td>
+                      <td className="px-4 py-3">
+                        <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${
+                          pos.signal === 'BREAKOUT' ? 'bg-emerald-900/50 text-emerald-400' :
+                          pos.signal === 'MOMENTUM' ? 'bg-blue-900/50 text-blue-400' :
+                          pos.signal === 'REVERSAL' ? 'bg-purple-900/50 text-purple-400' :
+                          'bg-amber-900/50 text-amber-400'
+                        }`}>
+                          {pos.signal}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-slate-300">{pos.shares}</td>
-                      <td className="px-6 py-4 text-slate-300">${pos.entryPrice.toFixed(2)}</td>
-                      <td className="px-6 py-4 text-slate-300">${(pos.currentPrice || pos.entryPrice).toFixed(2)}</td>
-                      <td className={`px-6 py-4 font-medium ${unrealized >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                        {unrealized >= 0 ? '+' : ''}${unrealized.toFixed(2)}
+                      <td className="px-4 py-3 text-right text-slate-300">{pos.shares}</td>
+                      <td className="px-4 py-3 text-right text-slate-300">${pos.entry_price?.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-right text-white font-medium">${pos.current_price?.toFixed(2)}</td>
+                      <td className={`px-4 py-3 text-right font-medium ${pnl >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                        {pnl >= 0 ? '+' : ''}${pnl.toFixed(2)}
                       </td>
-                      <td className="px-6 py-4">
-                        <button onClick={() => closePosition(pos.id)} className="text-blue-400 hover:text-blue-300 text-sm font-medium">Close</button>
+                      <td className={`px-4 py-3 text-right ${pnlPct >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                        {pnlPct >= 0 ? '+' : ''}{pnlPct.toFixed(1)}%
+                      </td>
+                      <td className="px-4 py-3 text-right text-red-400 text-sm">${pos.stop_price?.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-right text-emerald-400 text-sm">${pos.target_price?.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-right text-slate-500 text-sm">
+                        {pos.entry_time?.split(' ')[1]?.slice(0, 5)}
                       </td>
                     </tr>
                   );
@@ -276,58 +215,99 @@ export default function Trading() {
               </tbody>
             </table>
           </div>
+        )}
+      </div>
+
+      {/* Today's Closed Trades */}
+      {closedToday.length > 0 && (
+        <div className="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
+          <div className="px-6 py-4 border-b border-slate-700">
+            <h2 className="text-lg font-semibold text-white">Today's Closed Trades</h2>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-slate-900/50">
+                <tr>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase">Ticker</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase">Signal</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Shares</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Entry</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Exit</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">P&L</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">P&L %</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase">Exit Reason</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Hold Time</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-700/50">
+                {closedToday.map((trade, i) => (
+                  <tr key={i} className="hover:bg-slate-750">
+                    <td className="px-4 py-3 font-bold text-white">{trade.ticker}</td>
+                    <td className="px-4 py-3 text-slate-400 text-sm">{trade.signal}</td>
+                    <td className="px-4 py-3 text-right text-slate-300">{trade.shares}</td>
+                    <td className="px-4 py-3 text-right text-slate-300">${trade.entry_price?.toFixed(2)}</td>
+                    <td className="px-4 py-3 text-right text-slate-300">${trade.exit_price?.toFixed(2)}</td>
+                    <td className={`px-4 py-3 text-right font-medium ${trade.pnl >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                      {trade.pnl >= 0 ? '+' : ''}${trade.pnl?.toFixed(2)}
+                    </td>
+                    <td className={`px-4 py-3 text-right ${trade.pnl_pct >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                      {trade.pnl_pct >= 0 ? '+' : ''}{trade.pnl_pct?.toFixed(1)}%
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${
+                        trade.exit_reason === 'TARGET_HIT' ? 'bg-emerald-900/50 text-emerald-400' :
+                        trade.exit_reason === 'STOP_LOSS' ? 'bg-red-900/50 text-red-400' :
+                        trade.exit_reason === 'TRAILING_STOP' ? 'bg-amber-900/50 text-amber-400' :
+                        'bg-slate-700 text-slate-400'
+                      }`}>
+                        {trade.exit_reason?.replace('_', ' ')}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-right text-slate-500 text-sm">{trade.hold_time?.split('.')[0]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
-      {/* Trade History */}
+      {/* Historical Trade Log */}
       <div className="bg-slate-800 rounded-xl border border-slate-700 overflow-hidden">
         <div className="px-6 py-4 border-b border-slate-700">
-          <h2 className="text-lg font-semibold text-white">Trade History</h2>
+          <h2 className="text-lg font-semibold text-white">Trade History ({tradeLog.length} trades)</h2>
         </div>
-        {trades.length === 0 ? (
-          <div className="p-12 text-center">
-            <Activity className="w-12 h-12 mx-auto mb-4 text-slate-600" />
-            <p className="text-slate-400">No trades yet. Click "Add Trade" to log your first trade.</p>
+        {tradeLog.length === 0 ? (
+          <div className="p-8 text-center text-slate-500">
+            <Activity className="w-12 h-12 mx-auto mb-3 text-slate-600" />
+            No completed trades yet. The paper trader will enter positions automatically when setups trigger.
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-slate-900">
+              <thead className="bg-slate-900/50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Date</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Ticker</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Direction</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Shares</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Entry</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Exit</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">P&L</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">%</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase">Reason</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase">Date</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase">Ticker</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Entry</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Exit</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">Shares</th>
+                  <th className="px-4 py-3 text-right text-xs font-medium text-slate-400 uppercase">P&L</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase">Reason</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-700">
-                {[...trades].reverse().map((trade) => (
-                  <tr key={trade.id} className="hover:bg-slate-750">
-                    <td className="px-6 py-4 text-slate-400 text-sm">
-                      <div>{trade.entryDate}</div>
-                      {trade.exitDate && <div className="text-slate-500">→ {trade.exitDate}</div>}
+              <tbody className="divide-y divide-slate-700/50">
+                {[...tradeLog].reverse().slice(0, 50).map((trade, i) => (
+                  <tr key={i} className="hover:bg-slate-750">
+                    <td className="px-4 py-3 text-slate-500 text-sm">{trade.entry_time?.split(' ')[0]}</td>
+                    <td className="px-4 py-3 font-medium text-white">{trade.ticker}</td>
+                    <td className="px-4 py-3 text-right text-slate-300">${trade.entry_price?.toFixed(2)}</td>
+                    <td className="px-4 py-3 text-right text-slate-300">${trade.exit_price?.toFixed(2)}</td>
+                    <td className="px-4 py-3 text-right text-slate-300">{trade.shares}</td>
+                    <td className={`px-4 py-3 text-right font-medium ${(trade.pnl || 0) >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                      {(trade.pnl || 0) >= 0 ? '+' : ''}${(trade.pnl || 0).toFixed(2)}
                     </td>
-                    <td className="px-6 py-4 font-medium text-white">{trade.ticker}</td>
-                    <td className="px-6 py-4">
-                      <span className={`px-2 py-1 text-xs font-medium rounded-full ${trade.direction === 'long' ? 'bg-emerald-900/50 text-emerald-400' : 'bg-red-900/50 text-red-400'}`}>
-                        {trade.direction.toUpperCase()}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-slate-300">{trade.shares}</td>
-                    <td className="px-6 py-4 text-slate-300">${trade.entryPrice.toFixed(2)}</td>
-                    <td className="px-6 py-4 text-slate-300">{trade.exitPrice ? `$${trade.exitPrice.toFixed(2)}` : '-'}</td>
-                    <td className={`px-6 py-4 font-medium ${trade.pnl >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                      {trade.pnl >= 0 ? '+' : ''}${trade.pnl.toFixed(2)}
-                    </td>
-                    <td className={`px-6 py-4 ${trade.pnlPercent >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                      {trade.pnlPercent >= 0 ? '+' : ''}{trade.pnlPercent.toFixed(1)}%
-                    </td>
-                    <td className="px-6 py-4 text-slate-400 text-sm max-w-xs truncate">{trade.exitReason || trade.reason || '-'}</td>
+                    <td className="px-4 py-3 text-slate-400 text-sm">{trade.exit_reason?.replace('_', ' ')}</td>
                   </tr>
                 ))}
               </tbody>
@@ -337,25 +317,39 @@ export default function Trading() {
       </div>
 
       {/* Strategy Info */}
-      <div className="bg-gradient-to-r from-blue-900/30 to-indigo-900/30 rounded-xl border border-blue-800/50 p-6">
-        <h3 className="font-semibold text-blue-300 mb-3">V3 Momentum Strategy Rules</h3>
-        <div className="grid md:grid-cols-2 gap-4 text-sm">
+      <div className="bg-gradient-to-r from-amber-900/20 to-orange-900/20 rounded-xl border border-amber-800/30 p-6">
+        <h3 className="font-semibold text-amber-300 mb-3 flex items-center gap-2">
+          <Zap className="w-5 h-5" /> Day Trading Engine
+        </h3>
+        <div className="grid md:grid-cols-3 gap-4 text-sm">
           <div>
-            <p className="font-medium text-slate-300 mb-1">Entry Criteria:</p>
+            <p className="font-medium text-slate-300 mb-1">Scanner Criteria:</p>
             <ul className="list-disc list-inside space-y-1 text-slate-400">
-              <li>Price above EMA 9 &gt; EMA 20 &gt; EMA 50 (stacked)</li>
-              <li>RSI between 40-65 (not overbought)</li>
-              <li>Volume surge 2x+ average</li>
-              <li>Breakout above 10-day high OR power move (+2% day)</li>
+              <li>Scans 12,000+ stocks every 5 min</li>
+              <li>Gap ≥3% with 1.5x+ relative volume</li>
+              <li>Intraday momentum ≥3%</li>
+              <li>Breakouts at HOD + above VWAP</li>
+              <li>Reversal bounces on high volume</li>
             </ul>
           </div>
           <div>
-            <p className="font-medium text-slate-300 mb-1">Exit Criteria:</p>
+            <p className="font-medium text-slate-300 mb-1">Entry Rules:</p>
             <ul className="list-disc list-inside space-y-1 text-slate-400">
-              <li>Stop loss: Below entry support</li>
-              <li>Trailing stop: Activates at 1.5:1 R/R</li>
-              <li>RSI &gt;75 + reversal candle</li>
-              <li>Break below EMA 9 with red candle</li>
+              <li>Prioritize: Breakout → Momentum → Reversal</li>
+              <li>Must be above VWAP for longs</li>
+              <li>Max 3 concurrent positions</li>
+              <li>2% capital risk per trade</li>
+              <li>No chasing (&gt;50% movers)</li>
+            </ul>
+          </div>
+          <div>
+            <p className="font-medium text-slate-300 mb-1">Exit Rules:</p>
+            <ul className="list-disc list-inside space-y-1 text-slate-400">
+              <li>Hard stop: -3% from entry</li>
+              <li>Target: 2:1 risk/reward</li>
+              <li>Trailing stop at 1.5:1 R/R</li>
+              <li>Close all by 3:50 PM</li>
+              <li>No overnight holds</li>
             </ul>
           </div>
         </div>
