@@ -96,12 +96,12 @@ export default function NewsDigest() {
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
           <Calendar className="w-6 h-6 text-slate-500" />
-          <span className="text-slate-400">{new Date(date).toLocaleDateString('en-US', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-          })}</span>
+          <span className="text-slate-400">{(() => {
+            const [y, m, d] = date.split('-').map(Number);
+            return new Date(y, m - 1, d).toLocaleDateString('en-US', { 
+              weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+            });
+          })()}</span>
         </div>
         <h1 className="text-3xl font-bold text-white">Daily News Digest</h1>
         {digest.generatedAt && (
@@ -130,11 +130,13 @@ export default function NewsDigest() {
               
               <div className="p-6">
                 {/* Summary */}
-                <div className="mb-6">
-                  {category.summary.split('\n').map((para, i) => (
-                    <p key={i} className="text-slate-200 leading-relaxed mb-3">{para}</p>
-                  ))}
-                </div>
+                {category.summary && (
+                  <div className="mb-6">
+                    {category.summary.split('\n').filter(Boolean).map((para, i) => (
+                      <p key={i} className="text-slate-200 leading-relaxed mb-3">{para}</p>
+                    ))}
+                  </div>
+                )}
 
                 {/* Subcategories (for countries/sports) */}
                 {category.subcategories?.map((sub) => (
