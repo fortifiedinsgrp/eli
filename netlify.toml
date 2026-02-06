@@ -15,3 +15,13 @@
 
 [functions]
   node_bundler = "esbuild"
+
+[[headers]]
+  for = "/trades/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/digests/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
