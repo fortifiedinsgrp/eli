@@ -1,116 +1,169 @@
 import { Link } from 'react-router-dom'
 import { 
   MessageSquare, CheckSquare, FileText, Calendar,
-  ArrowRight, TrendingUp, Clock
+  ArrowRight, TrendingUp, Clock, Building2, Loader2
 } from 'lucide-react'
+import { useTasks, useNotes, useCompanies } from '../lib/hooks'
 
 export default function Home() {
+  const { data: tasksData, isLoading: tasksLoading } = useTasks({ includeCompleted: true, limit: 100 })
+  const { data: notesData, isLoading: notesLoading } = useNotes({ limit: 100 })
+  const { data: companiesData, isLoading: companiesLoading } = useCompanies()
+
+  const isLoading = tasksLoading || notesLoading || companiesLoading
+
+  const tasks = tasksData?.tasks || []
+  const notes = notesData?.notes || []
+  const companies = companiesData?.companies || []
+
+  const activeTasks = tasks.filter(t => t.status !== 'DONE')
+  const completedTasks = tasks.filter(t => t.status === 'DONE')
+  const recentTasks = [...tasks].sort((a, b) => b.updatedAt - a.updatedAt).slice(0, 5)
+
+  const getGreeting = () => {
+    const hour = new Date().getHours()
+    if (hour < 12) return 'Good morning'
+    if (hour < 17) return 'Good afternoon'
+    return 'Good evening'
+  }
+
   return (
     <div className="p-8">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Good evening, Marc</h1>
+        <h1 className="text-3xl font-bold mb-2">{getGreeting()}, Marc</h1>
         <p className="text-slate-400">Here's what's happening with your businesses.</p>
       </header>
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-4 gap-4 mb-8">
-        <StatCard 
-          label="Active Tasks" 
-          value="12" 
-          change="+3 today"
-          icon={CheckSquare}
-          color="blue"
-        />
-        <StatCard 
-          label="Notes" 
-          value="24" 
-          change="2 new"
-          icon={FileText}
-          color="purple"
-        />
-        <StatCard 
-          label="Messages" 
-          value="156" 
-          change="This week"
-          icon={MessageSquare}
-          color="green"
-        />
-        <StatCard 
-          label="Completed" 
-          value="89" 
-          change="This month"
-          icon={TrendingUp}
-          color="amber"
-        />
-      </div>
-
-      <div className="grid grid-cols-3 gap-6">
-        {/* Recent Activity */}
-        <div className="col-span-2 card">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">Recent Activity</h2>
-            <Link to="/history" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1">
-              View all <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-          <div className="space-y-3">
-            <ActivityItem 
-              title="Completed task: Review Formulyt contracts"
-              time="2 hours ago"
-              type="task"
-            />
-            <ActivityItem 
-              title="Added note: Meeting with Premier TPA"
-              time="4 hours ago"
-              type="note"
-            />
-            <ActivityItem 
-              title="Chat: Discussed InstaQuote call center metrics"
-              time="Yesterday"
-              type="chat"
-            />
-            <ActivityItem 
-              title="Completed task: Update Sentinel pricing"
-              time="Yesterday"
-              type="task"
-            />
-          </div>
+      {isLoading ? (
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="w-8 h-8 animate-spin text-blue-400" />
         </div>
-
-        {/* Quick Actions */}
-        <div className="space-y-4">
-          <div className="card">
-            <h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
-            <div className="space-y-2">
-              <Link to="/chat" className="btn-primary w-full flex items-center justify-center gap-2">
-                <MessageSquare className="w-4 h-4" /> Chat with Eli
-              </Link>
-              <Link to="/tasks" className="btn-secondary w-full flex items-center justify-center gap-2">
-                <CheckSquare className="w-4 h-4" /> Add Task
-              </Link>
-            </div>
+      ) : (
+        <>
+          {/* Quick Stats */}
+          <div className="grid grid-cols-4 gap-4 mb-8">
+            <StatCard 
+              label="Active Tasks" 
+              value={activeTasks.length} 
+              change={`${tasks.filter(t => t.status === 'IN_PROGRESS').length} in progress`}
+              icon={CheckSquare}
+              color="blue"
+            />
+            <StatCard 
+              label="Notes" 
+              value={notes.length} 
+              change="Knowledge base"
+              icon={FileText}
+              color="purple"
+            />
+            <StatCard 
+              label="Companies" 
+              value={companies.length} 
+              change="Active businesses"
+              icon={Building2}
+              color="green"
+            />
+            <StatCard 
+              label="Completed" 
+              value={completedTasks.length} 
+              change="Tasks done"
+              icon={TrendingUp}
+              color="amber"
+            />
           </div>
 
-          {/* Latest Digest */}
-          <div className="card">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">Latest Digest</h2>
-              <Link to="/digests" className="text-blue-400 hover:text-blue-300 text-sm">
-                All digests
-              </Link>
+          <div className="grid grid-cols-3 gap-6">
+            {/* Recent Activity */}
+            <div className="col-span-2 card">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold">Recent Tasks</h2>
+                <Link to="/tasks" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1">
+                  View all <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+              <div className="space-y-3">
+                {recentTasks.length === 0 ? (
+                  <p className="text-slate-500 text-center py-4">No tasks yet</p>
+                ) : (
+                  recentTasks.map(task => {
+                    const company = companies.find(c => c.id === task.companyId)
+                    return (
+                      <ActivityItem 
+                        key={task.id}
+                        title={task.title}
+                        subtitle={company?.name}
+                        time={formatRelativeTime(task.updatedAt)}
+                        status={task.status}
+                      />
+                    )
+                  })
+                )}
+              </div>
             </div>
-            <div className="flex items-center gap-3 p-3 bg-slate-800 rounded-lg">
-              <Calendar className="w-8 h-8 text-amber-400" />
-              <div>
-                <p className="font-medium">February 5, 2026</p>
-                <p className="text-sm text-slate-400">7 items covered</p>
+
+            {/* Quick Actions */}
+            <div className="space-y-4">
+              <div className="card">
+                <h2 className="text-lg font-semibold mb-4">Quick Actions</h2>
+                <div className="space-y-2">
+                  <Link to="/chat" className="btn-primary w-full flex items-center justify-center gap-2">
+                    <MessageSquare className="w-4 h-4" /> Chat with Eli
+                  </Link>
+                  <Link to="/tasks" className="btn-secondary w-full flex items-center justify-center gap-2">
+                    <CheckSquare className="w-4 h-4" /> View Tasks
+                  </Link>
+                </div>
+              </div>
+
+              {/* Companies Overview */}
+              <div className="card">
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-lg font-semibold">Companies</h2>
+                </div>
+                <div className="space-y-2">
+                  {companies.slice(0, 4).map(company => (
+                    <div 
+                      key={company.id}
+                      className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-800/50"
+                    >
+                      <div 
+                        className="w-3 h-3 rounded-full"
+                        style={{ backgroundColor: company.color }}
+                      />
+                      <span className="text-sm">{company.name}</span>
+                    </div>
+                  ))}
+                  {companies.length > 4 && (
+                    <p className="text-xs text-slate-500 text-center pt-2">
+                      +{companies.length - 4} more
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   )
+}
+
+function formatRelativeTime(timestamp) {
+  if (!timestamp) return 'Unknown'
+  
+  const now = Date.now()
+  const diff = now - timestamp
+  
+  const minutes = Math.floor(diff / 60000)
+  const hours = Math.floor(diff / 3600000)
+  const days = Math.floor(diff / 86400000)
+  
+  if (minutes < 1) return 'Just now'
+  if (minutes < 60) return `${minutes}m ago`
+  if (hours < 24) return `${hours}h ago`
+  if (days < 7) return `${days}d ago`
+  
+  return new Date(timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
 function StatCard({ label, value, change, icon: Icon, color }) {
@@ -135,22 +188,24 @@ function StatCard({ label, value, change, icon: Icon, color }) {
   )
 }
 
-function ActivityItem({ title, time, type }) {
-  const icons = {
-    task: <CheckSquare className="w-4 h-4 text-green-400" />,
-    note: <FileText className="w-4 h-4 text-purple-400" />,
-    chat: <MessageSquare className="w-4 h-4 text-blue-400" />,
+function ActivityItem({ title, subtitle, time, status }) {
+  const statusColors = {
+    TODO: 'bg-slate-500',
+    IN_PROGRESS: 'bg-blue-500',
+    WAITING: 'bg-amber-500',
+    DONE: 'bg-green-500',
   }
 
   return (
     <div className="flex items-center gap-3 p-3 bg-slate-800/50 rounded-lg">
-      {icons[type]}
+      <div className={`w-2 h-2 rounded-full ${statusColors[status] || statusColors.TODO}`} />
       <div className="flex-1">
         <p className="text-sm">{title}</p>
-        <p className="text-xs text-slate-500 flex items-center gap-1">
-          <Clock className="w-3 h-3" /> {time}
-        </p>
+        {subtitle && <p className="text-xs text-slate-500">{subtitle}</p>}
       </div>
+      <p className="text-xs text-slate-500 flex items-center gap-1">
+        <Clock className="w-3 h-3" /> {time}
+      </p>
     </div>
   )
 }
