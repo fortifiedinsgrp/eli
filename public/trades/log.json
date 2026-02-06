@@ -12,5 +12,19 @@
     "exit_reason": "TARGET_HIT",
     "signal": "GAPPER",
     "hold_time": "0:46:36.259359"
+  },
+  {
+    "ticker": "STLA",
+    "side": "LONG",
+    "entry_price": 7.43,
+    "exit_price": 7.21,
+    "shares": 1110,
+    "entry_time": "2026-02-06 11:04:31",
+    "exit_time": "2026-02-06 12:31:56",
+    "pnl": -244.2,
+    "pnl_pct": -2.96,
+    "exit_reason": "STOP_LOSS",
+    "signal": "REVERSAL",
+    "hold_time": "1:27:25.050489"
   }
 ]

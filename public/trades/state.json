@@ -1,33 +1,16 @@
 {
   "date": "2026-02-06",
-  "capital": 25082.51,
+  "capital": 24838.31,
   "starting_capital": 25000,
-  "cash": 8827.310000000001,
+  "cash": 11322.230000000003,
   "positions": [
-    {
-      "ticker": "STLA",
-      "shares": 1110,
-      "entry_price": 7.43,
-      "stop_price": 7.21,
-      "target_price": 7.88,
-      "current_price": 7.275,
-      "cost_basis": 8247.3,
-      "entry_time": "2026-02-06 11:04:31",
-      "signal": "REVERSAL",
-      "change_at_entry": -22.09,
-      "rel_volume": 2.5,
-      "highest_since_entry": 7.4399,
-      "trailing_active": false,
-      "unrealized_pnl": -172.05,
-      "unrealized_pct": -2.09
-    },
     {
       "ticker": "PLSE",
       "shares": 190,
       "entry_price": 19.47,
       "stop_price": 18.89,
       "target_price": 20.64,
-      "current_price": 20.08,
+      "current_price": 19.82,
       "cost_basis": 3699.3,
       "entry_time": "2026-02-06 11:04:31",
       "signal": "GAPPER",
@@ -35,8 +18,8 @@
       "rel_volume": 1.7,
       "highest_since_entry": 20.08,
       "trailing_active": false,
-      "unrealized_pnl": 115.9,
-      "unrealized_pct": 3.13
+      "unrealized_pnl": 66.5,
+      "unrealized_pct": 1.8
     },
     {
       "ticker": "IDEQ",
@@ -44,13 +27,30 @@
       "entry_price": 33.4,
       "stop_price": 33.17,
       "target_price": 33.85,
-      "current_price": 33.4,
+      "current_price": 33.385,
       "cost_basis": 4308.6,
       "entry_time": "2026-02-06 11:51:07",
       "signal": "BREAKOUT",
       "change_at_entry": 2.55,
       "rel_volume": 4.8,
       "highest_since_entry": 33.4,
+      "trailing_active": false,
+      "unrealized_pnl": -1.94,
+      "unrealized_pct": -0.04
+    },
+    {
+      "ticker": "JIG",
+      "shares": 71,
+      "entry_price": 77.58,
+      "stop_price": 76.78,
+      "target_price": 79.17,
+      "current_price": 77.58,
+      "cost_basis": 5508.18,
+      "entry_time": "2026-02-06 12:31:56",
+      "signal": "BREAKOUT",
+      "change_at_entry": 2.09,
+      "rel_volume": 54.4,
+      "highest_since_entry": 77.58,
       "trailing_active": false,
       "unrealized_pnl": 0,
       "unrealized_pct": 0
@@ -70,13 +70,27 @@
       "exit_reason": "TARGET_HIT",
       "signal": "GAPPER",
       "hold_time": "0:46:36.259359"
+    },
+    {
+      "ticker": "STLA",
+      "side": "LONG",
+      "entry_price": 7.43,
+      "exit_price": 7.21,
+      "shares": 1110,
+      "entry_time": "2026-02-06 11:04:31",
+      "exit_time": "2026-02-06 12:31:56",
+      "pnl": -244.2,
+      "pnl_pct": -2.96,
+      "exit_reason": "STOP_LOSS",
+      "signal": "REVERSAL",
+      "hold_time": "1:27:25.050489"
     }
   ],
-  "day_pnl": 82.51,
-  "total_pnl": 82.51,
-  "total_trades": 1,
+  "day_pnl": -161.69,
+  "total_pnl": -161.69,
+  "total_trades": 2,
   "winning_trades": 1,
-  "losing_trades": 0,
-  "last_scan": "2026-02-06 11:51:06",
-  "scan_count": 4
+  "losing_trades": 1,
+  "last_scan": "2026-02-06 12:31:55",
+  "scan_count": 5
 }
