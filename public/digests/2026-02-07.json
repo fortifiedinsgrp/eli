@@ -1,0 +1,209 @@
+{
+  "date": "2026-02-07",
+  "generated": "2026-02-07T18:00:00-05:00",
+  "headline": "US sets June deadline for Ukraine war; Japan snap election tomorrow; Storm Leonardo batters Spain & Portugal; Super Bowl LX eve; T20 World Cup kicks off; AI spending hits $600B",
+  "sections": {
+    "calendar": {
+      "title": "📅 Calendar",
+      "items": [
+        {
+          "date": "2026-02-07",
+          "time": "7:30 AM - 8:30 AM",
+          "event": "Study with Thomas",
+          "details": "Recurring Zoom meeting (ID: 81518296541)",
+          "status": "completed"
+        },
+        {
+          "date": "2026-02-08",
+          "time": "12:30 PM - 2:30 PM",
+          "event": "Weekend Meeting",
+          "details": "Recurring Sunday event",
+          "status": "upcoming"
+        }
+      ]
+    },
+    "email": {
+      "title": "📧 Email",
+      "unread_count": 5,
+      "items": [
+        {
+          "from": "Zoom Customer Care",
+          "subject": "Re: Vetting: SMS Campaign Rejection",
+          "time": "1:59 PM",
+          "priority": "medium",
+          "note": "Follow-up on SMS campaign vetting rejection — may need action"
+        },
+        {
+          "from": "Center City Rx (manager@centercityrx503a.com)",
+          "subject": "RE: API Integration",
+          "time": "8:20 AM",
+          "priority": "high",
+          "note": "Pharmacy API integration reply — likely needs review for Apex/Formulyt pipeline"
+        },
+        {
+          "from": "AI Automation Society (Skool)",
+          "subject": "1 new notification",
+          "time": "5:28 AM",
+          "priority": "low",
+          "note": "Community notification"
+        },
+        {
+          "from": "Team Tailscale",
+          "subject": "Getting started with Tailscale (1 week in)",
+          "time": "7:00 PM (yesterday)",
+          "priority": "low",
+          "note": "Marketing/onboarding email"
+        }
+      ]
+    },
+    "trading": {
+      "title": "📈 Trading Update",
+      "date": "2026-02-06",
+      "day_pnl": -33.22,
+      "total_pnl": -33.22,
+      "capital": 24966.78,
+      "starting_capital": 25000,
+      "total_trades": 8,
+      "win_rate": "62.5% (5W / 3L)",
+      "open_positions": [
+        {
+          "ticker": "FEM",
+          "shares": 276,
+          "entry": 29.82,
+          "signal": "BREAKOUT",
+          "cost": 8230.32,
+          "unrealized_pnl": 0,
+          "stop": 29.56,
+          "target": 30.34
+        },
+        {
+          "ticker": "VXF",
+          "shares": 25,
+          "entry": 217.77,
+          "signal": "BREAKOUT",
+          "cost": 5444.25,
+          "unrealized_pnl": 0,
+          "stop": 215.71,
+          "target": 221.90
+        },
+        {
+          "ticker": "BILL",
+          "shares": 77,
+          "entry": 48.17,
+          "signal": "MOMENTUM",
+          "cost": 3709.09,
+          "unrealized_pnl": 0,
+          "stop": 46.98,
+          "target": 50.54
+        }
+      ],
+      "notable_trades": [
+        { "ticker": "ROIV", "pnl": 82.51, "reason": "TARGET_HIT", "note": "Clean gapper play, hit target in 47 min" },
+        { "ticker": "STLA", "pnl": -244.20, "reason": "STOP_LOSS", "note": "Reversal on -25% gap-down — lesson: avoid reversal plays on massive gaps" },
+        { "ticker": "PLSE", "pnl": 96.90, "reason": "EOD_CLOSE", "note": "Best winner, held to close" }
+      ]
+    },
+    "news": {
+      "title": "📰 News Digest",
+      "categories": [
+        {
+          "name": "🌍 Global Events",
+          "content": "The US has given Ukraine and Russia a June deadline to end the war, President Zelensky revealed today, as Russia launched a massive overnight air attack on Ukrainian energy infrastructure. Separately, Iran declared its missiles \"non-negotiable\" after Oman-mediated talks with the US were described as a \"good start,\" though Iran also warned it would strike US bases in the region if attacked. Syria and Saudi Arabia signed multibillion-dollar investment deals, while Italy became the latest country to decline joining Trump's proposed \"Board of Peace,\" citing constitutional constraints.",
+          "sources": [
+            { "title": "US has given Ukraine and Russia June deadline to end war: Zelenskyy", "url": "https://www.aljazeera.com/news/2026/2/7/us-has-given-ukraine-and-russia-june-deadline-to-end-war-zelenskyy", "source": "Al Jazeera" },
+            { "title": "US wants Russia and Ukraine to end war by June, says Zelensky", "url": "https://www.bbc.com/news/articles/cd0y0y9z231o", "source": "BBC" },
+            { "title": "Iran says missiles off the table in talks with the US", "url": "https://www.aljazeera.com/news/2026/2/7/iran-says-oman-mediated-talks-with-us-a-good-start", "source": "Al Jazeera" },
+            { "title": "If US attacks, Iran says it will strike US bases", "url": "https://www.reuters.com/world/middle-east/if-us-attacks-iran-says-it-will-strike-us-bases-region-2026-02-07/", "source": "Reuters" }
+          ]
+        },
+        {
+          "name": "🇯🇵 Japan",
+          "content": "Japan heads to the polls tomorrow in a high-stakes snap election called by Prime Minister Sanae Takaichi, the country's first female premier. Polls suggest her LDP is on track to win more than the 233 seats needed for a majority in the 465-seat House of Representatives, riding her personal popularity despite voter concerns about inflation and a diplomatic row with China. Meanwhile, China's embassy in Japan reiterated calls for Chinese nationals to avoid traveling to Japan, adding diplomatic tension to the election atmosphere.",
+          "sources": [
+            { "title": "Will Sunday's snap election gamble pay off for Japan's first female premier?", "url": "https://www.bbc.com/news/articles/ckgl53zll3jo", "source": "BBC" },
+            { "title": "Japan snap election: Who's standing and what's at stake?", "url": "https://www.aljazeera.com/news/2026/2/7/japan-snap-election-whos-standing-and-whats-at-stake", "source": "Al Jazeera" }
+          ]
+        },
+        {
+          "name": "🇩🇪 Germany",
+          "content": "Chancellor Friedrich Merz wrapped up a three-day charm offensive in the Gulf region, accompanied by a business delegation, trying to position Germany as a reliable investment partner. Back home, the €1 million reward for tips on the Berlin power grid sabotage has generated a wave of leads, according to Interior Minister Nancy Faeser. A new report found that the pandemic, the Russia-Ukraine war, and trade disruptions have collectively cost the German economy €1 billion in lasting damage.",
+          "sources": [
+            { "title": "Germany news: Merz wraps up Gulf investment charm offensive", "url": "https://www.dw.com/en/germany-news-merz-wraps-up-gulf-investment-charm-offensive/live-75844277", "source": "Deutsche Welle" },
+            { "title": "Germany news: Police receive tips over Berlin grid sabotage", "url": "https://www.dw.com/en/germany-news-police-receive-tips-over-berlin-grid-sabotage/live-75853354", "source": "Deutsche Welle" }
+          ]
+        },
+        {
+          "name": "🇪🇸🇵🇹 Spain & Portugal",
+          "content": "Spain and Portugal are bracing for yet another storm, just days after Storm Leonardo's deadly floods killed at least 2 people and displaced over 11,000 in Andalucía alone. Hundreds of thousands have been evacuated across Spain, Portugal, and Morocco. In southern Portugal, the town of Alcácer do Sal remains semi-submerged for a third day. The Guadalquivir river has begun flooding parts of Seville, and Extremadura has approved voluntary evacuations in several Badajoz municipalities.",
+          "sources": [
+            { "title": "Spain, Portugal brace for new storm after floods kill 2, displace 11,000", "url": "https://www.aljazeera.com/news/2026/2/7/spain-portugal-brace-for-new-storm-after-floods-kill-2-displace-11000", "source": "Al Jazeera" },
+            { "title": "Storm Leonardo forces evacuations in Spain and Portugal", "url": "https://www.reuters.com/sustainability/land-use-biodiversity/more-storms-coming-leonardo-swells-rivers-bursts-aquifers-spain-portugal-2026-02-06/", "source": "Reuters" },
+            { "title": "La borrasca 'Leonardo' — más de 11.000 desalojados en Andalucía", "url": "https://elpais.com/espana/2026-02-06/ultima-hora-de-la-borrasca-leonardo-en-directo.html", "source": "El País" }
+          ]
+        },
+        {
+          "name": "🌎 Latin America (Paraguay, Mexico, Guatemala)",
+          "content": "In Mexico, intense cold grips the sierras while heavy rains and strong winds sweep several regions; Mexico City activated environmental contingency protocols for the weekend. In Venezuela, the political prisoner amnesty process continues — 383 of an estimated 800+ detainees have been released since January 8 following US intervention. Guatemala's football federation unveiled its new 2026 Umbro kit collection featuring quetzal-inspired designs ahead of the World Cup year.",
+          "sources": [
+            { "title": "Clima en México: frío, lluvias y vientos fuertes", "url": "https://www.adn40.mx/mexico/2026-02-07/clima-en-mexico-hoy-7-febrero-2026-frio-lluvias-vientos", "source": "ADN40" },
+            { "title": "2026 US intervention in Venezuela — amnesty update", "url": "https://en.wikipedia.org/wiki/2026_United_States_strikes_in_Venezuela", "source": "Wikipedia" },
+            { "title": "Guatemala 2026 kit collection released", "url": "https://www.footyheadlines.com/2026/02/umbro-guatemala-2026-home-away-pre-match-shirts.html", "source": "Footy Headlines" }
+          ]
+        },
+        {
+          "name": "🔬🤖 Science / Tech / AI",
+          "content": "Big Tech's planned $600 billion AI spending spree for 2026 is rattling investors, with software stocks selling off globally after Anthropic unveiled a new AI tool seen as a potential replacement for enterprise software products. Google CEO Sundar Pichai said the company will spend over $185 billion on AI infrastructure this year, more than doubling its capex. Amazon's shares also fell as it joined the spending race. Meanwhile, the EU ordered TikTok to change its \"addictive design\" or face massive fines, and a South Korean crypto firm accidentally transferred $40 billion in Bitcoin before quickly recovering it.",
+          "sources": [
+            { "title": "Big Tech's $600B spending plans exacerbate investors' AI headache", "url": "https://www.reuters.com/business/global-software-data-firms-slide-ai-disruption-fears-compound-jitters-over-600-2026-02-06/", "source": "Reuters" },
+            { "title": "New AI tool hammered software stocks this week", "url": "https://abcnews.go.com/Business/new-ai-tool-hammered-software-stocks-week/story?id=129845251", "source": "ABC News" },
+            { "title": "TikTok told to change addictive design by EU", "url": "https://www.bbc.com/news/articles/cr7j7n315lmo", "source": "BBC" },
+            { "title": "S Korean crypto firm accidentally pays out $40bn in bitcoin", "url": "https://www.bbc.com/news/articles/cz6y62nzjxxo", "source": "BBC" }
+          ]
+        },
+        {
+          "name": "🏈 NFL — Super Bowl LX Eve",
+          "content": "Tomorrow is the big one: Super Bowl LX pits the New England Patriots against the Seattle Seahawks at Levi's Stadium in Santa Clara — a rematch of Super Bowl 49. Drake Maye has led the Patriots to their record 12th Super Bowl appearance in Mike Vrabel's first season as coach, while Sam Darnold powered Seattle's surprising run. The game kicks off at 6:30 PM ET on Fox. The economic impact on the Bay Area is estimated at $630 million. (Dolphins' season ended earlier — no active news.)",
+          "sources": [
+            { "title": "Super Bowl LX matchup: Patriots vs Seahawks", "url": "https://www.usatoday.com/story/sports/nfl/super-bowl/2026/02/07/super-bowl-60-matchup-teams/88457928007/", "source": "USA Today" },
+            { "title": "Super Bowl drives $630M economic boon", "url": "https://www.aljazeera.com/economy/2026/2/7/super-bowl-drives-economic-boon-ahead-of-game", "source": "Al Jazeera" }
+          ]
+        },
+        {
+          "name": "🏀 NBA",
+          "content": "Tonight's marquee matchup has the Thunder visiting the Rockets. The Knicks (33-18) hosted the Pistons (37-13, league-best record) in a top Eastern Conference clash. The Celtics mounted a stunning comeback to beat the Heat. The Pelicans rolled on the road behind a combined 85 points from Saddiq Bey (30), Zion Williamson (29), and Trey Murphy III (26). Reminder: the Knicks won the 2025 NBA Cup back in December against the Spurs.",
+          "sources": [
+            { "title": "NBA roundup: Celtics comeback over Heat; Pistons vs Knicks", "url": "https://sportstar.thehindu.com/basketball/nba-2025-2026-scores-results-celtics-vs-heat-piston-v-knicks-updates/article70603245.ece", "source": "Sportstar" },
+            { "title": "Thunder vs Rockets preview", "url": "https://www.sportpreferred.com/nba/thunder-vs-rockets-prediction-last-5-games-injury-report-player-stats-h2h-best-picks-feb-7-2026/6838", "source": "Sport Preferred" }
+          ]
+        },
+        {
+          "name": "⚽ Soccer — EPL & La Liga",
+          "content": "The biggest EPL match of the weekend is tomorrow: Liverpool host Manchester City at Anfield (11:30 AM ET on Peacock). Man United beat 10-man Tottenham 2-0 as manager Jonathan Carrick extended his winning run. In La Liga, Barcelona cruised past Mallorca 3-0 at home to extend their lead at the top of the table to four points. Also, the UEFA Futsal EURO 2026 final between Portugal and Spain takes place tonight in Ljubljana — a sold-out affair.",
+          "sources": [
+            { "title": "Carrick extends winning run as Man United beat Tottenham 2-0", "url": "https://www.aljazeera.com/sports/2026/2/7/carrick-extends-winning-run-as-man-united-beat-10-man-tottenham-2-0", "source": "Al Jazeera" },
+            { "title": "Liverpool vs Manchester City preview", "url": "https://www.nbcsports.com/soccer/news/liverpool-vs-manchester-city-live-updates-score-highlights-stats-watch", "source": "NBC Sports" },
+            { "title": "Barcelona 3-0 Mallorca", "url": "https://www.outlookindia.com/sports/football/barcelona-vs-mallorca-live-score-la-liga-2025-26-matchday-23-updates-highlights", "source": "Outlook India" }
+          ]
+        },
+        {
+          "name": "♟️ Chess",
+          "content": "Nodirbek Abdusattorov won the prestigious Tata Steel Chess tournament in Wijk aan Zee (\"chess Wimbledon\"), completing an Uzbek sweep alongside compatriot in the Challengers section. In Georgia, Baadur Jobava and Nino Batsiashvili each won their fifth national championship titles. Looking ahead, chess has been added to the $45 million Esports Nations Cup 2026 in Riyadh, with FIDE confirming an unprecedented number of competitors. The Speed Chess Championship finals (featuring Carlsen and Nakamura in the quarters) continue from London.",
+          "sources": [
+            { "title": "Abdusattorov triumphs at Wijk aan Zee as Uzbek pair sweep", "url": "https://www.theguardian.com/sport/2026/feb/06/abdusattorov-triumphs-at-wijk-aan-zee-as-uzbek-pair-sweep-chess-wimbledon", "source": "The Guardian" },
+            { "title": "Chess at $45M Esports Nations Cup", "url": "https://worldchess.com/news/chess-esports-nations-cup-2026-riyadh-saudi-arabia", "source": "World Chess / FIDE" },
+            { "title": "Speed Chess Championship Finals Live", "url": "https://en.chessbase.com/post/speed-chess-ch-2025-26-live", "source": "ChessBase" }
+          ]
+        },
+        {
+          "name": "🏏 Cricket — T20 World Cup Opens!",
+          "content": "The 2026 Men's T20 World Cup kicked off today, co-hosted by India and Sri Lanka! In the opening match, the Netherlands faced Pakistan in Colombo. India beat the United States by 29 runs in their opener — captain Suryakumar Yadav rescued the innings with an unbeaten 84 off 29 balls after India collapsed to 77-6. The West Indies also cruised past Scotland by 35 runs (182-5 vs 147 all out). The ICC is negotiating with Pakistan to reverse their decision to boycott India-hosted fixtures.",
+          "sources": [
+            { "title": "Suryakumar rescues India as US threaten T20 World Cup upset", "url": "https://www.aljazeera.com/sports/2026/2/7/suryakumar-rescues-india-as-united-states-threaten-t20-world-cup-upset", "source": "Al Jazeera" },
+            { "title": "India vs USA result", "url": "https://www.bbc.com/sport/cricket/live/cg4eygv550kt", "source": "BBC Sport" },
+            { "title": "West Indies vs Scotland result", "url": "https://www.bbc.com/sport/cricket/live/c99k0jpyllmt", "source": "BBC Sport" }
+          ]
+        }
+      ]
+    }
+  }
+}
